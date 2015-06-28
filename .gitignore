@@ -1,4 +1,7 @@
 /vendor
 /node_modules
+/.idea
+/public/*
+database.sqlite
 Homestead.yaml
 .env
