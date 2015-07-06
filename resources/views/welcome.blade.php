@@ -5,6 +5,11 @@
 
     <title>PostalCache</title>
 
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-48x48.png" sizes="48x48">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+
     <link href="//fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
     <style>
@@ -64,6 +69,18 @@
             margin: 0 0 0 12px;
             display: inline-block;
             vertical-align: middle;
+        }
+
+        header .img-logo {
+            display: inline-block;
+            overflow: hidden;
+            text-indent: -999em;
+            vertical-align: middle;
+            background: url("/images/logo.png") center top no-repeat;
+            width: 39px;
+            height: 33px;
+            background-size: 39px 33px;
+            padding: 5px;
         }
 
         header .main-menu ul li {
