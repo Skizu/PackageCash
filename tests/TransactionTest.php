@@ -21,13 +21,12 @@ class TransactionTest extends TestCase
         factory(App\Transaction::class, 3)
             ->make()
             ->each(function ($transaction) use ($user, $source, $destination) {
-                $transaction->user()->associate($user);
                 $transaction->source()->associate($source);
                 $transaction->destination()->associate($destination);
-                $destination->transactions()->save($transaction);
+                $user->transactions()->save($transaction);
             });
 
-        $transactions = App\Envelope::find(1)->transactions();
+        $transactions = App\Envelope::find(1)->source;
 
         foreach($transactions as $transaction) {
             $this->assertInstanceOf('App\Transaction', $transaction);
@@ -46,13 +45,12 @@ class TransactionTest extends TestCase
         factory(App\Transaction::class, 3)
             ->make()
             ->each(function ($transaction) use ($user, $source, $destination) {
-                $transaction->user()->associate($user);
                 $transaction->source()->associate($source);
                 $transaction->destination()->associate($destination);
-                $destination->transactions()->save($transaction);
+                $user->transactions()->save($transaction);
             });
 
-        $transactions = App\Cheque::find(1)->transactions();
+        $transactions = App\Cheque::find(1)->transactions;
 
         foreach($transactions as $transaction) {
             $this->assertInstanceOf('App\Transaction', $transaction);

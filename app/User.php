@@ -45,6 +45,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function transactions()
     {
-        return $this->hasManyThrough('App\Transaction', 'App\Envelope');
+        return $this->hasMany('App\Transaction');
     }
 }

@@ -10,6 +10,6 @@ class AppTest extends TestCase
     public function testAppStarts()
     {
         $this->visit('/')
-             ->see('Package Cash');
+             ->see('PostalCache');
     }
 }

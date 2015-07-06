@@ -25,7 +25,17 @@ class Envelope extends Model {
 
     public function transactions()
     {
+        // TODO: Get all things
+    }
+
+    public function source()
+    {
         return $this->morphMany('App\Transaction', 'source');
+    }
+
+    public function destination()
+    {
+        return $this->morphMany('App\Transaction', 'destination');
     }
 
 }
