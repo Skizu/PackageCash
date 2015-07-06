@@ -1,52 +1,195 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Laravel</title>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link href="//fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+    <title>PostalCache</title>
 
-        <style>
-            html, body {
-                height: 100%;
-            }
+    <link href="//fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                color: #B0BEC5;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
+    <style>
+        @font-face {
+            font-family: "title-decorative";
+            src: url("/fonts/festivo7.eot");
+            src: url("/fonts/festivo7.eot?#iefix") format("embedded-opentype"),
+            url("/fonts/festivo7.woff") format("woff"),
+            url("/fonts/festivo7.ttf") format("truetype"),
+            url("/fonts/festivo7.svg#webfont") format("svg");
+        }
 
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
+        html, body {
+            height: 100%;
+        }
 
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            color: #B0BEC5;
+            display: table;
+            font-weight: 100;
+            font-family: 'Lato';
+        }
 
-            .title {
-                font-size: 96px;
-                margin-bottom: 40px;
-            }
+        a {
+            font-size: inherit;
+            line-height: inherit;
+            font-weight: bold;
+            color: #0079ad;
+            text-decoration: none;
+        }
 
-            .quote {
-                font-size: 24px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Package Cash</div>
-                <div class="quote">{{ Inspiring::quote() }}</div>
+        ul, ol {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .container-fixed {
+            width: 100%;
+            display: table;
+            position: relative;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        header {
+            display: block;
+            position: relative;
+            z-index: 5;
+            padding: 15px;
+        }
+
+        header .main-menu {
+            margin: 0 0 0 12px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        header .main-menu ul li {
+            display: inline-block;
+            padding: 0 12px;
+        }
+
+        header .main-menu ul a {
+            padding-bottom: 5px;
+            font-size: 16px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            text-shadow: 0 0 3px rgba(0, 121, 173, 0.4);
+        }
+
+        header .main-menu ul a:hover {
+            border-bottom: 2px solid #0079ad;
+        }
+
+        header div.header-buttons {
+            float: right;
+            -ms-touch-action: none;
+            touch-action: none;
+        }
+
+        main {
+            display: table;
+            width: 100%;
+            height: 100%;
+            margin-top: -81px;
+            padding-top: 80px;
+        }
+
+        .container {
+            text-align: center;
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .content {
+            text-align: center;
+            display: inline-block;
+        }
+
+        .title {
+            font-family: "title-decorative";
+            font-size: 72px;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .slogan {
+            font-size: 30px;
+            margin-bottom: 60px;
+            font-weight: 800;
+        }
+
+        .more {
+            font-size: 24px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 9px 15px 10px;
+            margin-bottom: 0;
+            background: #009cde;
+            font-size: 15px;
+            font-size: 1rem;
+            font-weight: bold;
+            line-height: 1.4545em;
+            -webkit-font-smoothing: antialiased;
+            color: #fff;
+            text-align: center;
+            vertical-align: middle;
+            cursor: pointer;
+            border-radius: 5px;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .btn-wide {
+            padding-left: 5em;
+            padding-right: 5em;
+        }
+
+        .btn-white {
+            background: #fff;
+        }
+
+        .btn:hover {
+            background: #0c8dc4;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fixed">
+    <header role="banner">
+        <div class="containerCentered">
+            <a href="/home" class="img-logo">PostalCache</a>
+
+            <nav class="main-menu" id="main-nav" role="navigation">
+                <ul>
+                    <li>
+                        <a href="/about">About Us</a>
+                    </li>
+                    <li>
+                        <a href="/promise">Our Promise</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header-buttons">
+                <a href="/login" class="btn">Log In</a>
+                <a href="/register" class="btn">Sign Up</a>
             </div>
         </div>
-    </body>
+    </header>
+</div>
+<main>
+    <div class="container">
+        <div class="content">
+            <div class="title">Package, Manage, Spend</div>
+            <div class="slogan">Freedom to manage your money</div>
+            <a href="/promise" class="btn btn-wide more">Find Out More</a>
+        </div>
+    </div>
+</main>
+</body>
 </html>
