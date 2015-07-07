@@ -12,7 +12,8 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.sass('app.scss')
+    mix.sass('guest.scss', 'public/css/styles.css')
+        .sass('app.scss')
         .copy('resources/assets/favicons', 'public')
         .copy('resources/assets/fonts', 'public/fonts')
         .copy('resources/assets/images', 'public/images');
