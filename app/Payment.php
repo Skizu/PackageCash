@@ -2,14 +2,14 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Transaction extends Model {
+class Payment extends Model {
 
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'transactions';
+    protected $table = 'payments';
 
     /**
      * The attributes that are mass assignable.
@@ -17,11 +17,6 @@ class Transaction extends Model {
      * @var array
      */
     protected $fillable = ['description', 'amount'];
-
-    public function destination()
-    {
-        return $this->morphTo();
-    }
 
     public function source()
     {

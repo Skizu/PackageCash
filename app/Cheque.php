@@ -30,4 +30,9 @@ class Cheque extends Model
     {
         return $this->morphMany('App\Transaction', 'source');
     }
+
+    public function payments()
+    {
+        return $this->morphMany('App\Payment', 'source');
+    }
 }
