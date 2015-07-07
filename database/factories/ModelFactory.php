@@ -23,7 +23,7 @@ $factory->define(App\User::class, function ($faker) {
 $factory->define(App\Cheque::class, function ($faker) {
     return [
         'name' => $faker->name,
-        'amount' => $faker->randomFloat,
+        'amount' => 500,
     ];
 });
 
@@ -35,6 +35,13 @@ $factory->define(App\Envelope::class, function ($faker) {
 });
 
 $factory->define(App\Transaction::class, function ($faker) {
+    return [
+        'description' => $faker->sentence,
+        'amount' => $faker->randomFloat,
+    ];
+});
+
+$factory->define(App\Payment::class, function ($faker) {
     return [
         'description' => $faker->sentence,
         'amount' => $faker->randomFloat,
