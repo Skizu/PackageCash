@@ -19,9 +19,9 @@ Route::get('home', 'HomeController@index');
 
 
 Route::controllers([
-    '/' => 'GuestController',
     'auth' => 'Auth\AuthController',
-    'password' => 'Auth\PasswordController'
+    'password' => 'Auth\PasswordController',
+    '/' => 'GuestController',
 ]);
 
 Route::resource('envelope', 'EnvelopeController');
