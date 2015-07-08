@@ -3,7 +3,7 @@
 class AppTest extends TestCase
 {
     /**
-     * A basic functional test example.
+     * A basic functional test.
      *
      * @return void
      */

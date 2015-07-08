@@ -7,7 +7,7 @@ class ChequeTest extends TestCase
     use DatabaseMigrations;
 
     /**
-     * A basic functional test example.
+     * Testing the creation of an App\Cheque Model
      *
      * @return void
      */
@@ -15,17 +15,22 @@ class ChequeTest extends TestCase
     {
         $user = factory(App\User::class)->create();
 
-        $cheques = factory(App\Cheque::class, 0)
+        $cheques = factory(App\Cheque::class, 3)
             ->make()
             ->each(function ($cheque) use ($user) {
                 $user->cheques()->save($cheque);
             });
 
-        foreach($cheques as $cheque) {
+        foreach ($cheques as $cheque) {
             $this->assertEquals(500, $cheque->amount);
         }
     }
 
+    /**
+     * Testing the creation of 2 App\Cheque Models and are fetching them
+     *
+     * @return void
+     */
     public function testCreateChequeTwo()
     {
         $user = factory(App\User::class)->create();

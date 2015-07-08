@@ -44,6 +44,6 @@ $factory->define(App\Transaction::class, function ($faker) {
 $factory->define(App\Payment::class, function ($faker) {
     return [
         'description' => $faker->sentence,
-        'amount' => $faker->randomFloat,
+        'amount' => $faker->randomFloat(2),
     ];
 });

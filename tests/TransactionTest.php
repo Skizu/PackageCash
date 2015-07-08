@@ -7,7 +7,7 @@ class TransactionTest extends TestCase
     use DatabaseMigrations;
 
     /**
-     * A basic functional test example.
+     * Testing the creation of App\Transaction Models with two App\Envelope Models
      *
      * @return void
      */
@@ -28,6 +28,8 @@ class TransactionTest extends TestCase
 
         $transactions = App\Envelope::find(1)->source;
 
+        $this->assertEquals(3, count($transactions));
+
         foreach($transactions as $transaction) {
             $this->assertInstanceOf('App\Transaction', $transaction);
             $this->assertGreaterThan(0, $transaction->amount);
@@ -35,6 +37,11 @@ class TransactionTest extends TestCase
 
     }
 
+    /**
+     * Testing the creation of App\Transaction Models with a App\Cheque and App\Envelope Model
+     *
+     * @return void
+     */
     public function testChequeToEnvelope()
     {
         $user = factory(App\User::class)->create();
@@ -51,6 +58,8 @@ class TransactionTest extends TestCase
             });
 
         $transactions = App\Cheque::find(1)->transactions;
+
+        $this->assertEquals(3, count($transactions));
 
         foreach($transactions as $transaction) {
             $this->assertInstanceOf('App\Transaction', $transaction);

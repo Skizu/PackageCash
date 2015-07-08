@@ -7,7 +7,7 @@ class PaymentTest extends TestCase
     use DatabaseMigrations;
 
     /**
-     * A basic functional test example.
+     * Testing the creation of App\Payments Models with App\Envelope Model
      *
      * @return void
      */
@@ -26,6 +26,8 @@ class PaymentTest extends TestCase
 
         $payments = App\Envelope::find(1)->payments;
 
+        $this->assertEquals(3, count($payments));
+
         foreach($payments as $payment) {
             $this->assertInstanceOf('App\Payment', $payment);
             $this->assertGreaterThan(0, $payment->amount);
@@ -33,6 +35,11 @@ class PaymentTest extends TestCase
 
     }
 
+    /**
+     * Testing the creation of App\Payments Models with App\Cheque Model
+     *
+     * @return void
+     */
     public function testCheque()
     {
         $user = factory(App\User::class)->create();
@@ -47,6 +54,8 @@ class PaymentTest extends TestCase
             });
 
         $payments = App\Cheque::find(1)->payments;
+
+        $this->assertEquals(3, count($payments));
 
         foreach($payments as $payment) {
             $this->assertInstanceOf('App\Payment', $payment);

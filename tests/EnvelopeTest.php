@@ -7,7 +7,7 @@ class EnvelopeTest extends TestCase
     use DatabaseMigrations;
 
     /**
-     * A basic functional test example.
+     * Testing the creation of an App\Cheque Model
      *
      * @return void
      */
@@ -26,6 +26,11 @@ class EnvelopeTest extends TestCase
         }
     }
 
+    /**
+     * Testing the creation of 2 App\Envelope Models and are fetching them
+     *
+     * @return void
+     */
     public function testCreateEnvelopeTwo()
     {
         $user = factory(App\User::class)->create();
