@@ -16,13 +16,15 @@ class CreatePaymentsTable extends Migration
         {
             $table->increments('id');
             $table->char('description');
-            $table->decimal('amount');
+            $table->decimal('amount', 15, 2);
 
             $table->integer('user_id');
             $table->string('source_type');
             $table->integer('source_id');
 
             $table->timestamps();
+
+            $table->index(['id', 'user_id', 'source_type', 'source_id']);
         });
     }
 

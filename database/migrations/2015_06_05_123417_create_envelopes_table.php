@@ -16,11 +16,13 @@ class CreateEnvelopesTable extends Migration {
 		{
 			$table->increments('id');
             $table->char('name');
-            $table->decimal('amount');
+            $table->decimal('amount', 15, 2);
 
             $table->integer('user_id');
 
 			$table->timestamps();
+
+            $table->index(['id', 'user_id']);
 		});
 	}
 
