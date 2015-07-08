@@ -16,7 +16,7 @@ class CreateChequeTable extends Migration
         {
             $table->increments('id');
             $table->char('name');
-            $table->decimal('amount', 15, 2);
+            $table->integer('amount');
 
             $table->integer('user_id');
 
