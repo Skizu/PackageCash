@@ -25,7 +25,8 @@ class Envelope extends Model {
 
     public function transactions()
     {
-        // TODO: Get all things
+        return Transaction::where('source_id', $this->id)
+            ->orWhere('destination_id', $this->id)->get();
     }
 
     public function payments()
