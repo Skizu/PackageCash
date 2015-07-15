@@ -17,6 +17,7 @@ $url_2: url(/fonts/festivo7.woff);
 $url_3: url(/fonts/festivo7.ttf);
 $url_4: url(/fonts/festivo7.svg#webfont);
 $logo: url(/images/logo.png);
+$background: url(/images/background.png);
 
 @font-face {
   font-family: $title;
@@ -111,6 +112,11 @@ main {
   display: table-row;
   width: 100%;
   height: 100%;
+
+  &.Home {
+    background: $background center;
+    background-attachment: fixed;
+  }
 }
 
 .container {
@@ -122,6 +128,8 @@ main {
 .content {
   text-align: center;
   display: inline-block;
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 25px 10px;
 }
 
 .title {

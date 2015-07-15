@@ -1,5 +1,7 @@
 @extends('guest')
 
+@section('page', 'Home')
+
 @section('content')
     <div class="title">Package, Manage, Spend</div>
     <div class="slogan">Freedom to manage your money</div>
