@@ -11,18 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('home', 'HomeController@index');
-
-
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',
     '/' => 'GuestController',
 ]);
 
-Route::resource('envelope', 'EnvelopeController');
-Route::resource('envelope.transaction', 'TransactionController');
+Route::resources([
+    'envelope' => 'EnvelopeController',
+    'envelope.transaction' => 'TransactionController'
+]);
