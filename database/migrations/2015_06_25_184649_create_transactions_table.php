@@ -26,7 +26,9 @@ class CreateTransactionsTable extends Migration {
 
             $table->timestamps();
 
-            $table->index(['id', 'user_id', 'source_type', 'source_id', 'destination_type', 'destination_id']);
+            $table->foreign('user_id')->references('id')->on('users');
+
+            $table->index(['user_id', 'source_type', 'source_id', 'destination_type', 'destination_id']);
         });
 	}
 

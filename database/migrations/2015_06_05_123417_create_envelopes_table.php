@@ -22,7 +22,9 @@ class CreateEnvelopesTable extends Migration {
 
 			$table->timestamps();
 
-            $table->index(['id', 'user_id']);
+			$table->foreign('user_id')->references('id')->on('users');
+
+            $table->index(['user_id']);
 		});
 	}
 
