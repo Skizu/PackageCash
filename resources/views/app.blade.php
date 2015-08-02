@@ -6,10 +6,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Package Cash</title>
 
-	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/favicon-48x48.png" sizes="48x48">
+	<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+
+	<link href="{{ elixir('css/app.css') }}" rel="stylesheet">
 
 	<!-- Fonts -->
-	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+    <link href="//fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

@@ -11,7 +11,7 @@
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
 
     <link href="//fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-    <link href="/css/styles.css" rel="stylesheet" type="text/css">
+    <link href="{{ elixir('css/styles.css') }}" rel="stylesheet" type="text/css">
 
 </head>
 <body>
