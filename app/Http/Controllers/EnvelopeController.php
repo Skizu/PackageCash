@@ -94,7 +94,7 @@ class EnvelopeController extends Controller
 
         $envelope->save();
 
-        return ($request->isJson()) ? $envelope : redirect()->route('envelope.show', $id);
+        return ($request->isJson()) ? $envelope : redirect()->route('envelopes.show', $id);
     }
 
     /**

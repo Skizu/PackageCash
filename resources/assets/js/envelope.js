@@ -6,7 +6,7 @@ $('.envelopes')
         var $envelope = $that.closest('.envelope');
         var $colour = $envelope.data('colour');
 
-        $.post('/envelope/' + $envelope.data('id'), {
+        $.post('/envelopes/' + $envelope.data('id'), {
             _method: "put",
             colour: $that.data('colour')
         }, function (data) {
