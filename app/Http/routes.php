@@ -14,10 +14,12 @@
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',
-    '/' => 'GuestController',
+    'dashboard' => 'DashboardController'
 ]);
 
-Route::resources([
-    'envelope' => 'EnvelopeController',
-    'envelope.transaction' => 'TransactionController'
-]);
+Route::resource('envelope', 'EnvelopeController');
+Route::resource('envelope.transaction', 'TransactionController');
+
+Route::group(['middleware' => 'guest'], function () {
+    Route::controller('/', 'GuestController');
+});
