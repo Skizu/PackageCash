@@ -17,6 +17,7 @@ class CreateEnvelopesTable extends Migration {
 			$table->increments('id');
             $table->char('name');
             $table->integer('amount');
+			$table->integer('colour')->default(0);
 
             $table->integer('user_id');
 
