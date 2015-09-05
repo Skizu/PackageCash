@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>PackageCash</title>
+    <title>PostalCache</title>
 
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
@@ -38,7 +38,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Package Cash</a>
+            <a class="navbar-brand" href="#">PostalCache</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -51,22 +51,23 @@
                 @endif
             </ul>
 
-				<ul class="nav navbar-nav navbar-right">
-					@if (Auth::guest())
-						<li><a href="{{ url('/auth/login') }}">Login</a></li>
-						<li><a href="{{ url('/auth/register') }}">Register</a></li>
-					@else
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="{{ url('/auth/logout') }}">Logout</a></li>
-							</ul>
-						</li>
-					@endif
-				</ul>
-			</div>
-		</div>
-	</nav>
+            <ul class="nav navbar-nav navbar-right">
+                @if (Auth::guest())
+                    <li><a href="{{ url('/auth/login') }}">Login</a></li>
+                    <li><a href="{{ url('/auth/register') }}">Register</a></li>
+                @else
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ url('/auth/logout') }}">Logout</a></li>
+                        </ul>
+                    </li>
+                @endif
+            </ul>
+        </div>
+    </div>
+</nav>
 
 @yield('content')
 
