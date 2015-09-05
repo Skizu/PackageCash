@@ -1,0 +1,176 @@
+.envelope {
+  height: 100px;
+  width: 150px;
+  display: inline-block;
+  position: relative;
+  background: $envelope-bg;
+  border: 5px solid $envelope-border-color;
+  @include transition(opacity 3s ease);
+
+  &.template {
+    @include opacity(0);
+  }
+
+  .background {
+    width: 0;
+    height: 0;
+    z-index: 100;
+    position: absolute;
+
+    border-style: solid;
+    border-width: 42.5px 70px 0 70px;
+    border-color: #fff transparent transparent transparent;
+  }
+
+  .flap {
+    width: 0;
+    height: 0;
+    position: absolute;
+    z-index: 101;
+    margin: 0 7.5px;
+    border-style: solid;
+    border-width: 36px 63px 0 63px;
+    border-color: rgba($envelope-bg-blue, 0.45) transparent transparent transparent;
+  }
+
+  .details {
+    padding: 5px;
+    height: 100px;
+    width: 100%;
+    z-index: 102;
+    position: absolute;
+
+    .title {
+      height: 50px;
+      position: relative;
+
+      .tag {
+        cursor: pointer;
+      }
+
+      input {
+        border: none;
+        background-color: rgba(255, 255, 255, 0.6);
+
+        @include border-top-radius(5px);
+        @include border-bottom-radius(5px);
+      }
+    }
+
+    .add {
+      margin-top: -8px;
+      font-size: 2em;
+
+      span {
+        color: darken($theme-grey, 15%);
+        cursor: pointer;
+        background-color: rgba(255, 255, 255, 0.6);
+        padding: 2px 2px 2px 4.5px;
+        @include border-top-radius(5px);
+        @include border-bottom-radius(5px);
+      }
+    }
+
+    .colours {
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.6);
+      width: 100%;
+
+      div {
+        height: 10px;
+        width: 10px;
+        margin: 0 2.5px;
+        display: inline-block;
+        border: 1px solid $border-color;
+
+        cursor: pointer;
+
+        &.colour[data-colour="blue"] {
+          background-color: $envelope-bg-blue;
+        }
+        &.colour[data-colour="green"] {
+          background-color: $envelope-bg-green;
+        }
+        &.colour[data-colour="yellow"] {
+          background-color: $envelope-bg-yellow;
+        }
+        &.colour[data-colour="orange"] {
+          background-color: $envelope-bg-orange;
+        }
+        &.colour[data-colour="pink"] {
+          background-color: $envelope-bg-pink;
+        }
+        &.colour[data-colour="purple"] {
+          background-color: $envelope-bg-purple;
+        }
+      }
+    }
+  }
+
+  &[data-colour="blue"] {
+    background: $envelope-bg-blue;
+
+    .flap {
+      border-color: lighten($envelope-bg-blue, 10%) transparent transparent transparent;
+    }
+
+    .tag {
+      color: darken($envelope-bg-blue, 10%);
+    }
+  }
+  &[data-colour="green"] {
+    background: $envelope-bg-green;
+
+    .flap {
+      border-color: lighten($envelope-bg-green, 10%) transparent transparent transparent;
+    }
+
+    .tag {
+      color: darken($envelope-bg-green, 10%);
+    }
+  }
+  &[data-colour="yellow"] {
+    background: $envelope-bg-yellow;
+
+    .flap {
+      border-color: lighten($envelope-bg-yellow, 10%) transparent transparent transparent;
+    }
+
+    .tag {
+      color: #FFEE88;
+    }
+  }
+  &[data-colour="orange"] {
+    background: $envelope-bg-orange;
+
+    .flap {
+      border-color: lighten($envelope-bg-orange, 10%) transparent transparent transparent;
+    }
+
+    .tag {
+      color: darken($envelope-bg-orange, 10%);
+    }
+  }
+  &[data-colour="pink"] {
+    background: $envelope-bg-pink;
+
+    .flap {
+      border-color: lighten($envelope-bg-pink, 10%) transparent transparent transparent;
+    }
+
+    .tag {
+      color: darken($envelope-bg-pink, 10%);
+    }
+  }
+  &[data-colour="purple"] {
+    background: $envelope-bg-purple;
+
+    .flap {
+      border-color: lighten($envelope-bg-purple, 10%) transparent transparent transparent;
+    }
+
+    .tag {
+      color: darken($envelope-bg-purple, 10%);
+    }
+  }
+}
