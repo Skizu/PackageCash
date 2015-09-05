@@ -34,6 +34,7 @@
                     data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle Navigation</span>
                 <span class="icon-bar"></span>
+
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
@@ -46,6 +47,7 @@
                     <li><a href="{{ url('/') }}">Home</a></li>
                 @else
                     <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                    <li><a href="{{ route('envelope.index') }}">Envelopes</a></li>
                 @endif
             </ul>
 
