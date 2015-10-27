@@ -17,8 +17,10 @@ Route::controllers([
     'dashboard' => 'DashboardController'
 ]);
 
-Route::resource('envelopes', 'EnvelopeController');
-Route::resource('envelopes.transaction', 'TransactionController');
+Route::resources([
+    'envelopes' => 'EnvelopeController',
+    'envelopes.transaction' => 'TransactionController'
+]);
 
 Route::group(['middleware' => 'guest'], function () {
     Route::controller('/', 'GuestController');

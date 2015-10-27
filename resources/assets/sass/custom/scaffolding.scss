@@ -2,6 +2,21 @@ body {
   font-weight: $font-weight;
 }
 
+.header {
+  font-size: 2em;
+  .well {
+    padding: 0.25em;
+  }
+}
+
+.big {
+  font-size: 1.5em;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
 .dashbar {
   min-height: 600px;
 }

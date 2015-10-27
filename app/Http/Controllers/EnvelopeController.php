@@ -68,7 +68,8 @@ class EnvelopeController extends Controller
      */
     public function show($id)
     {
-        //
+        $envelope = Envelope::findOrFail($id);
+        return view('envelopes.show', ['envelope' => $envelope]);
     }
 
     /**

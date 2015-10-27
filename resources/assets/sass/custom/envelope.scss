@@ -1,3 +1,12 @@
+$colours: (
+        blue: $envelope-bg-blue,
+        green: $envelope-bg-green,
+        yellow: $envelope-bg-yellow,
+        orange: $envelope-bg-orange,
+        pink: $envelope-bg-pink,
+        purple: $envelope-bg-purple
+);
+
 .envelope {
   height: 100px;
   width: 150px;
@@ -85,92 +94,62 @@
 
         cursor: pointer;
 
-        &.colour[data-colour="blue"] {
-          background-color: $envelope-bg-blue;
-        }
-        &.colour[data-colour="green"] {
-          background-color: $envelope-bg-green;
-        }
-        &.colour[data-colour="yellow"] {
-          background-color: $envelope-bg-yellow;
-        }
-        &.colour[data-colour="orange"] {
-          background-color: $envelope-bg-orange;
-        }
-        &.colour[data-colour="pink"] {
-          background-color: $envelope-bg-pink;
-        }
-        &.colour[data-colour="purple"] {
-          background-color: $envelope-bg-purple;
+        @each $class, $colour in $colours {
+          &.colour[data-colour="#{$class}"] {
+            background-color: $colour;
+          }
         }
       }
     }
   }
 
-  &[data-colour="blue"] {
-    background: $envelope-bg-blue;
+  @each $class, $colour in $colours {
+    &[data-colour="#{$class}"] {
+      background: $colour;
 
-    .flap {
-      border-color: lighten($envelope-bg-blue, 10%) transparent transparent transparent;
-    }
+      .flap {
+        border-color: lighten($colour, 10%) transparent transparent transparent;
+      }
 
-    .tag {
-      color: darken($envelope-bg-blue, 10%);
-    }
-  }
-  &[data-colour="green"] {
-    background: $envelope-bg-green;
-
-    .flap {
-      border-color: lighten($envelope-bg-green, 10%) transparent transparent transparent;
-    }
-
-    .tag {
-      color: darken($envelope-bg-green, 10%);
+      .tag {
+        color: darken($colour, 10%);
+      }
     }
   }
-  &[data-colour="yellow"] {
-    background: $envelope-bg-yellow;
+}
 
-    .flap {
-      border-color: lighten($envelope-bg-yellow, 10%) transparent transparent transparent;
-    }
-
-    .tag {
-      color: #FFEE88;
-    }
-  }
-  &[data-colour="orange"] {
-    background: $envelope-bg-orange;
-
-    .flap {
-      border-color: lighten($envelope-bg-orange, 10%) transparent transparent transparent;
-    }
-
-    .tag {
-      color: darken($envelope-bg-orange, 10%);
+#envelope {
+  @each $class, $colour in $colours {
+    &.#{$class} {
+      .header {
+        background-color: lighten($colour, 10%);
+        .icon {
+          color: darken($colour, 10%);
+        }
+      }
     }
   }
-  &[data-colour="pink"] {
-    background: $envelope-bg-pink;
 
-    .flap {
-      border-color: lighten($envelope-bg-pink, 10%) transparent transparent transparent;
+  .transaction {
+    @extend .well;
+    @extend .well-sm;
+    font-weight: bold;
+    line-height: 1.5;
+
+    .action {
+      font-weight: bolder;
     }
-
-    .tag {
-      color: darken($envelope-bg-pink, 10%);
+    .amount {
+      padding: 2px 4px;
+      color: #c7254e;
+      background-color: #f9f2f4;
+      border-radius: 4px;
     }
-  }
-  &[data-colour="purple"] {
-    background: $envelope-bg-purple;
-
-    .flap {
-      border-color: lighten($envelope-bg-purple, 10%) transparent transparent transparent;
+    .details {
+      @extend .text-info;
     }
-
-    .tag {
-      color: darken($envelope-bg-purple, 10%);
+    .timestamp {
+      display: inline-block;
     }
   }
 }

@@ -1,5 +1,8 @@
 $('.envelopes')
-    .on('click', '.tag', function () {
+    .on('dblclick', '.envelope.clickable', function () {
+        var $that = $(this);
+        window.location.href = '/envelopes/' + $that.data('id');
+    }).on('click', '.tag', function () {
         $(this).parent().find('.colours').toggleClass('hidden');
     }).on('click', '.colour', function () {
         var $that = $(this);
@@ -23,7 +26,7 @@ $('.envelopes')
         var $nameCtrl = $that.closest('.envelope').find('[name="name"]');
         var $name = $nameCtrl.val();
 
-        $.post('/envelope/', {
+        $.post('/envelopes/', {
             name: $name
         }, function (data) {
             $nameCtrl.val('');
@@ -43,3 +46,32 @@ $('.envelopes')
             $envelope.toggleClass('template');
         })
     });
+$('[data-filter]').on('click', '[data-colour]', function () {
+    var $that = $(this);
+    $that.toggleClass('active');
+
+    filterEnvelopes();
+}).on('keyup', function() {
+    filterEnvelopes();
+});
+
+function filterEnvelopes() {
+    var $active = $('[data-filter] [data-colour].active');
+    var $query = $('[data-filter="name"]').val().toLowerCase();
+
+    if($active.length == 0){
+        $active = $('[data-filter] [data-colour]');
+    }
+    $active = $active.map(function() {
+        return $(this).data('colour');
+    }).get();
+
+
+    $('.envelopes').find('[data-colour].envelope').each(function(id, envelope) {
+        colour = $(envelope).data('colour');
+        name = $(envelope).find('[data-name]').data('name');
+        active = $.inArray(colour, $active) > -1;
+        queryMatch = $(envelope).has('[data-name*="' + $query + '"]').length ? true : $query.length ? false : true;
+        $(envelope).parent('div').toggleClass('hide', (active && queryMatch) == false);
+    });
+}

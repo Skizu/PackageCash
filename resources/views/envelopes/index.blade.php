@@ -3,9 +3,24 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-xs-3">
+            <div class="col-xs-2">
+                <div class="dashbar well">
+                    <div class="h4">Filter Colour</div>
+                    <div class="row" data-filter="colour">
+                        @foreach(App\Envelope::$colours as $colour)
+                            <div class="col-sm-12 col-md-6 blocks">
+                                <div class="clickable block {{ $colour }}" data-colour="{{ $colour }}"></div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
             </div>
-            <div class="col-xs-9">
+            <div class="col-xs-10">
+                <div class="well">
+                    <input data-filter="name" type="text" class="form-control input-lg" placeholder="Filter by name"/>
+                </div>
+            </div>
+            <div class="col-xs-10">
                 <div class="row envelopes text-center">
                     @foreach(Auth::user()->envelopes as $envelope)
                         <div class="col-sm-4 col-md-3">
