@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Money;
+namespace App\Money;
 
 
 trait MoneyTrait
@@ -18,7 +18,12 @@ trait MoneyTrait
         return $money;
     }
 
-    public function formatMoney($column) {
-        return $this->money($this->$column);
+
+    /**
+     * @param $property
+     * @return string
+     */
+    public function formatMoney($property) {
+        return $this->money($this->$property);
     }
 }
