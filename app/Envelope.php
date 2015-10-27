@@ -1,9 +1,11 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Money\MoneyTrait;
 
 class Envelope extends Model
 {
+    use MoneyTrait;
 
     const BLUE = 0;
     const GREEN = 1;
@@ -59,14 +61,6 @@ class Envelope extends Model
     public function destination()
     {
         return $this->morphMany('App\Transaction', 'destination');
-    }
-
-    public function getAmountAttribute($value)
-    {
-        setlocale(LC_MONETARY, $this->user->locale);
-        $money = money_format('%.2n', $value / 100);
-        setlocale(LC_MONETARY, env('LOCALE'));
-        return $money;
     }
 
     public function getColourAttribute($value)
