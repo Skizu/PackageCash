@@ -2,21 +2,23 @@ $font-weight: 100;
 
 $theme-grey: #ccc;
 $theme-bg: #009cde;
-$theme-default-text-color: #fff;
+$theme-default-text-color: #333;
+$theme-contrast-text-color: #fff;
 $headings-color: #eee;
 
-$text-color: $theme-default-text-color;
-$navbar-default-link-color: $theme-default-text-color;
+//$text-color: $theme-default-text-color;
+
 $well-bg: $theme-bg;
 $navbar-default-bg: $theme-bg;
 $dropdown-bg: $theme-bg;
+$panel-default-heading-bg: $theme-bg;
 
-$dropdown-link-color: $theme-default-text-color;
+$navbar-default-link-color: $theme-contrast-text-color;
+$dropdown-link-color: $theme-contrast-text-color;
+$panel-default-text: $theme-contrast-text-color;
 
 $border-color: $theme-grey;
 $border-color-active: #fff;
-
-
 
 $envelope-border-color: #fff;
 
