@@ -12,12 +12,19 @@ $colours: (
   width: 150px;
   display: inline-block;
   position: relative;
+  color: $gray-dark;
   background: $envelope-bg;
   border: 5px solid $envelope-border-color;
   @include transition(opacity 3s ease);
 
   &.template {
     @include opacity(0);
+  }
+
+  &:not(.new):hover {
+    border-color: $theme-grey;
+    @include border-top-radius(5px);
+    @include border-bottom-radius(5px);
   }
 
   .background {
@@ -128,6 +135,11 @@ $colours: (
         }
       }
     }
+  }
+
+  .header {
+    color: $theme-grey;
+    font-weight: bold;
   }
 
   .transaction {

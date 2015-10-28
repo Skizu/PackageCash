@@ -1,10 +1,12 @@
 $('.envelopes')
-    .on('dblclick', '.envelope.clickable', function () {
+    .on('click', '.tag', function (e) {
+        e.stopPropagation();
+        $(this).parent().find('.colours').toggleClass('hidden');
+    }).on('click', '.envelope.clickable', function () {
         var $that = $(this);
         window.location.href = '/envelopes/' + $that.data('id');
-    }).on('click', '.tag', function () {
-        $(this).parent().find('.colours').toggleClass('hidden');
-    }).on('click', '.colour', function () {
+    }).on('click', '.colour', function (e) {
+        e.stopPropagation();
         var $that = $(this);
         var $envelope = $that.closest('.envelope');
         var $colour = $envelope.data('colour');

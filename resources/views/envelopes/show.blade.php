@@ -18,12 +18,12 @@
         </div>
         <div class="row">
             <div class="col-md-2">
-                <div class="well well-sm big">
-                    <div><strong>I want to:</strong></div>
+                <div class="well well-sm">
+                    <div class="big"><strong>I want to:</strong></div>
                     <ul class="list-unstyled">
-                        <li><a href="#"><span class="glyphicon glyphicon-export"></span> Withdraw</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-import"></span> Deposit</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-transfer"></span> Transfer</a></li>
+                        <li><a href="#"><span class="big glyphicon glyphicon-export"></span> Withdraw</a></li>
+                        <li><a href="#"><span class="big glyphicon glyphicon-import"></span> Deposit</a></li>
+                        <li><a href="#"><span class="big glyphicon glyphicon-transfer"></span> Transfer</a></li>
                     </ul>
                 </div>
             </div>

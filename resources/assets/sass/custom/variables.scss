@@ -1,9 +1,22 @@
 $font-weight: 100;
 
 $theme-grey: #ccc;
+$theme-bg: #009cde;
+$theme-default-text-color: #fff;
+$headings-color: #eee;
+
+$text-color: $theme-default-text-color;
+$navbar-default-link-color: $theme-default-text-color;
+$well-bg: $theme-bg;
+$navbar-default-bg: $theme-bg;
+$dropdown-bg: $theme-bg;
+
+$dropdown-link-color: $theme-default-text-color;
 
 $border-color: $theme-grey;
 $border-color-active: #fff;
+
+
 
 $envelope-border-color: #fff;
 
