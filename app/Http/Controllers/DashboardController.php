@@ -1,10 +1,11 @@
 <?php namespace App\Http\Controllers;
 
+use App\Money\MoneyTrait;
 use Auth;
 
 class DashboardController extends Controller
 {
-
+    use MoneyTrait;
     /*
     |--------------------------------------------------------------------------
     | Dashboard Controller
@@ -24,6 +25,7 @@ class DashboardController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->user = request()->user();
     }
 
     /**
@@ -33,7 +35,9 @@ class DashboardController extends Controller
      */
     public function getIndex()
     {
-        return view('dashboard');
+        $envelopes = $this->user->envelopes;
+        $total = $this->money($envelopes->sum('amount'));
+        return view('dashboard', ['total' => $total]);
     }
 
 }
