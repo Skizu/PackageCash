@@ -63,13 +63,12 @@ class EnvelopeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  Envelope $envelope
      * @return Response
      */
-    public function show($id)
+    public function show(Envelope $envelope)
     {
-        $envelope = Envelope::findOrFail($id);
-        return view('envelopes.show', ['envelope' => $envelope]);
+        return view('envelopes.show', compact('envelope'));
     }
 
     /**
@@ -84,18 +83,16 @@ class EnvelopeController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  int $id
+     * @param  Envelope $envelope
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Envelope $envelope)
     {
-        $envelope = Envelope::find($id);
-
         $envelope->colour = $request->input('colour');
 
         $envelope->save();
 
-        return ($request->isJson()) ? $envelope : redirect()->route('envelopes.show', $id);
+        return ($request->isJson()) ? $envelope : redirect()->route('envelope.show', $envelope);
     }
 
     /**

@@ -37,7 +37,8 @@ class DashboardController extends Controller
     {
         $envelopes = $this->user->envelopes;
         $total = $this->money($envelopes->sum('amount'));
-        return view('dashboard', ['total' => $total]);
+        $UnsortedCheques = $this->user->cheques()->where('amount', '>', 0)->get();
+        return view('dashboard', compact('total', 'UnsortedCheques', 'envelopes'));
     }
 
 }

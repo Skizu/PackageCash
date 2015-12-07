@@ -2,10 +2,13 @@
 
 namespace App;
 
+use App\Money\MoneyTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Cheque extends Model
 {
+
+    use MoneyTrait;
 
     /**
      * The database table used by the model.

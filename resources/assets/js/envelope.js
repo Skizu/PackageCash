@@ -4,14 +4,14 @@ $('.envelopes')
         $(this).parent().find('.colours').toggleClass('hidden');
     }).on('click', '.envelope.clickable', function () {
         var $that = $(this);
-        window.location.href = '/envelopes/' + $that.data('id');
+        window.location.href = '/envelope/' + $that.data('id');
     }).on('click', '.colour', function (e) {
         e.stopPropagation();
         var $that = $(this);
         var $envelope = $that.closest('.envelope');
         var $colour = $envelope.data('colour');
 
-        $.post('/envelopes/' + $envelope.data('id'), {
+        $.post('/envelope/' + $envelope.data('id'), {
             _method: "put",
             colour: $that.data('colour')
         }, function (data) {
@@ -28,7 +28,7 @@ $('.envelopes')
         var $nameCtrl = $that.closest('.envelope').find('[name="name"]');
         var $name = $nameCtrl.val();
 
-        $.post('/envelopes/', {
+        $.post('/envelope/', {
             name: $name
         }, function (data) {
             $nameCtrl.val('');

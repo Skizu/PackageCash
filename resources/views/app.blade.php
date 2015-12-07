@@ -47,7 +47,7 @@
                     <li><a href="{{ url('/') }}">Home</a></li>
                 @else
                     <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
-                    <li><a href="{{ route('envelopes.index') }}">Envelopes</a></li>
+                    <li><a href="{{ route('envelope.index') }}">Envelopes</a></li>
                 @endif
             </ul>
 

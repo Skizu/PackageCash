@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Cheque;
+use Auth;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -26,7 +28,7 @@ class ChequeController extends Controller
      */
     public function create()
     {
-        //
+        return view('cheques.create');
     }
 
     /**
@@ -34,42 +36,62 @@ class ChequeController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        //
+        $name = $request->input('name');
+        $amount = $request->input('amount') * 100;
+
+        $cheque = new Cheque(compact('name', 'amount'));
+
+        $cheque->user()->associate(Auth::id());
+
+        $cheque->save();
+
+        return redirect()->route('cheque.show', $cheque);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Cheque  $cheque
      * @return Response
      */
-    public function show($id)
+    public function show(Cheque $cheque)
     {
-        //
+        return view('cheques.show', compact('cheque'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Cheque $cheque
      * @return Response
      */
-    public function edit($id)
+    public function edit(Cheque $cheque)
     {
-        //
+        $envelopes = Auth::user()->envelopes;
+        return view('cheques.edit', compact('cheque', 'envelopes'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param  Request $request
+     * @param  Cheque $cheque
      * @return Response
      */
-    public function update($id)
+    public function update(Request $request, Cheque $cheque)
     {
-        //
+        $amount = $request->input('amount') * 100;
+        $envelope = Auth::user()->envelopes()->findOrFail($request->input('envelope'));
+
+        $cheque->amount = $cheque->amount - $amount;
+        $envelope->amount = $envelope->amount + $amount;
+
+        $envelope->save();
+        $cheque->save();
+
+        return redirect()->route('cheque.show', [$cheque->id]);
     }
 
     /**
