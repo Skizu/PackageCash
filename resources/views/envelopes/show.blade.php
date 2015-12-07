@@ -29,22 +29,9 @@
             </div>
             <div class="col-md-8">
                 <div class="transaction big text-center">Transaction History</div>
-                <div class="transaction withdrawal">
-                    <span class="action"><span class="glyphicon glyphicon-export"></span> Withdrawal</span> of
-                    <span class="amount">$30.00</span> for <span class="details">Train ticket</span>.
-                    <span class="hidden-xs text-muted small pull-right" title="time stamp">1 minute ago</span>
-                </div>
-                <div class="transaction deposit">
-                    <span class="action"><span class="glyphicon glyphicon-import"></span> Deposit</span> of
-                    <span class="amount">$50.00</span> from <a class="btn btn-sm btn-primary">Monthly Cheque</a>
-                    <span class="hidden-xs text-muted small pull-right">3 hours ago</span>
-                </div>
-                <div class="transaction">
-                    <span class="action"><span class="glyphicon glyphicon-transfer"></span> Transfer</span> of
-                    <span class="amount">$1000.00</span> from <a class="btn btn-sm btn-primary"><span
-                                class="glyphicon glyphicon-envelope"></span> Boobs</a>
-                    <span class="hidden-xs text-muted small pull-right">1 week ago</span>
-                </div>
+                @include('transactions.transfer')
+                @include('transactions.withdrawal')
+                @include('transactions.deposit')
             </div>
         </div>
     </div>

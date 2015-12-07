@@ -1,0 +1,22 @@
+.transaction {
+  @extend .well;
+  @extend .well-sm;
+  font-weight: bold;
+  line-height: 1.5;
+
+  .action {
+    font-weight: bolder;
+  }
+  .amount {
+    padding: 2px 4px;
+    color: #c7254e;
+    background-color: #f9f2f4;
+    border-radius: 4px;
+  }
+  .details {
+    @extend .text-info;
+  }
+  .timestamp {
+    display: inline-block;
+  }
+}
