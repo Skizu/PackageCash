@@ -17,11 +17,15 @@ Route::controllers([
     'dashboard' => 'DashboardController',
 ]);
 
-Route::resources([
-    'envelope' => 'EnvelopeController',
-    'envelope.transaction' => 'TransactionController',
-    'cheque' => 'ChequeController',
-]);
+Route::group(['middleware' => 'auth'], function () {
+    Route::resources([
+        'profile' => 'ProfileController',
+        'envelope' => 'EnvelopeController',
+        'envelope.transaction' => 'TransactionController',
+        'cheque' => 'ChequeController',
+        'transfer' => 'TransferController',
+    ]);
+});
 
 Route::group(['middleware' => 'guest'], function () {
     Route::controller('/', 'GuestController');
