@@ -18,20 +18,30 @@
         </div>
         <div class="row">
             <div class="col-md-2">
-                <div class="well well-sm">
-                    <div class="big"><strong>I want to:</strong></div>
-                    <ul class="list-unstyled">
-                        <li><a href="#"><span class="big glyphicon glyphicon-export"></span> Withdraw</a></li>
-                        <li><a href="#"><span class="big glyphicon glyphicon-import"></span> Deposit</a></li>
-                        <li><a href="#"><span class="big glyphicon glyphicon-transfer"></span> Transfer</a></li>
-                    </ul>
+                <div class="action-panel">
+                    <div class="row">
+                        <h4 class="heading">Actions</h4>
+                        <a class="col-md-6 action">
+                            <span>Withdraw</span>
+                            <span class="info">From Envelope</span>
+                        </a>
+                        <a class="col-md-6 action">
+                            <span>Transfer</span>
+                            <span class="info">From Envelope</span>
+                        </a>
+                        <a href="{{ route('envelope.edit', [$envelope]) }}" class="col-md-12 super-action">
+                            <span>Edit</span>
+                            <span class="info">
+                                Envelope Details
+                            </span>
+                        </a>
+
+                    </div>
                 </div>
             </div>
             <div class="col-md-8">
                 <div class="transaction big text-center">Transaction History</div>
-                @include('transactions.transfer')
-                @include('transactions.withdrawal')
-                @include('transactions.deposit')
+                @include('audit-log.logs', ['log' => $envelope->getAuditLog()])
             </div>
         </div>
     </div>

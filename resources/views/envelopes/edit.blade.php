@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Distribute Cheque</div>
+                    <div class="panel-heading">Edit Envelope</div>
                     <div class="panel-body">
                         @if (count($errors) > 0)
                             <div class="alert alert-danger">
@@ -18,50 +18,37 @@
                         @endif
 
                         <form class="form-horizontal" role="form" method="POST"
-                              action="{{ route('cheque.update', [$cheque->id]) }}">
+                              action="{{ route('envelope.update', [$envelope->id]) }}">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="hidden" name="_method" value="PUT">
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Balance</label>
+                                <label for="name" class="col-md-4 control-label">Name</label>
 
                                 <div class="col-md-6">
-                                    <div class="input-group">
-                                        <div class="input-group-addon">{{ $cheque->currencySymbol() }}</div>
-                                        <input type="text" class="form-control" name="amount"
-                                               value="{{ $cheque->disableSymbol()->formatMoney('amount') }}"
-                                               placeholder="Amount" disabled>
-                                    </div>
+                                    <input type="text" id="name" class="form-control" name="name"
+                                           value="{{ old('name', $envelope->name) }}" placeholder="Name">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Destination</label>
+                                <label for="colour" class="col-md-4 control-label">Colour</label>
 
                                 <div class="col-md-6">
-                                    <select class="form-control" name="envelope">
+                                    <select id="colour" class="form-control" name="colour">
                                         <option>Please Select</option>
-                                        @foreach($envelopes as $envelope)
-                                            <option value="{{ $envelope->id }}">{{ $envelope->name }}</option>
+                                        @foreach(App\Envelope::$colours as $colour)
+                                            <option value="{{ $colour  }}"
+                                                    @if($colour == $envelope->colour)selected="selected"@endif>
+                                                {{ ucwords($colour) }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Amount</label>
-
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <div class="input-group-addon">{{ $cheque->currencySymbol() }}</div>
-                                        <input type="text" class="form-control" name="amount" placeholder="Amount">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
                                 <div class="col-md-8 col-md-offset-4">
-                                    <button type="submit" class="btn btn-primary">Transfer</button>
+                                    <button type="submit" class="btn btn-primary">Update</button>
                                 </div>
                             </div>
                         </form>

@@ -11,16 +11,19 @@
                 <div class="well text-center">
                     <div class="row">
                         <div class="col-sm-12 big"><strong>Balance: {{ $cheque->formatMoney('amount') }}</strong></div>
-                        <div class="col-sm-12"><a href="{{ route('cheque.edit', [$cheque->id]) }}" class="btn btn-default btn-small">Distribute</a></div>
+                        @if($cheque->amount > 0)
+                            <div class="col-sm-12">
+                                <a href="{{ route('cheque.edit', [$cheque->id]) }}"
+                                   class="btn btn-default btn-small">Distribute</a>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
         <div>
             <div class="transaction big text-center">Transaction History</div>
-            @include('transactions.withdrawal')
-            @include('transactions.deposit')
-            @include('transactions.transfer')
+            @include('audit-log.logs', ['log' => $cheque->getAuditLog()])
         </div>
     </div>
 @endsection

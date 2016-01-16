@@ -1,0 +1,41 @@
+.timeline {
+  position: relative;
+
+  .bar {
+    position: absolute;
+    width: 4px;
+    background: $timeline-bar;
+    display: inline-block;
+    height: 100%;
+    left: 37px;
+    z-index: -1;
+  }
+
+  .icon {
+    margin-left: -46px;
+    margin-top: 8px;
+    background: $timeline-bar;
+    border: solid 4px #fff;
+    width: 20px;
+    height: 20px;
+    -webkit-border-radius: 10px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 10px;
+    -moz-background-clip: padding;
+    border-radius: 10px;
+    background-clip: padding-box;
+    display: inline-block;
+    float: left;
+    vertical-align: top;
+    position: relative;
+  }
+
+  .entry {
+    padding-left: 75px;
+    margin-bottom: 10px;
+  }
+
+  .details {
+    @extend .small;
+  }
+}

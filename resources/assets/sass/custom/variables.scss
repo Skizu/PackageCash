@@ -11,7 +11,7 @@ $theme-muted-background: #f5f5f5;
 $theme-muted-color: $theme-grey;
 $text-muted: $theme-muted-color;
 
-$headings-color: #eee;
+$headings-color: $theme-default-text-color;
 
 $well-bg: $theme-bg;
 $navbar-default-bg: $theme-bg;
@@ -35,3 +35,11 @@ $envelope-bg-pink: #ff94d6;
 $envelope-bg-purple: #b474d6;
 
 $envelope-bg: $envelope-bg-blue;
+
+$timeline-bar: $theme-bg;
+
+$action-border-color: #fff;
+$action-padding: 5px;
+$action-bg: #f2f2f2;
+$super-action-bg: #e7e7e7;
+$action-hover-bg: #eee;
