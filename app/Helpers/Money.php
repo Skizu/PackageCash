@@ -2,38 +2,36 @@
 
 namespace App\Helpers;
 
-class Money {
+use App\Money\MoneyTrait;
+use Auth;
 
-    private $pence;
-
-    public function __construct($pence)
-    {
-        $this->pence = (integer) $pence;
+class Money
+{
+    use MoneyTrait {
+        formatMoney as traitformatMoney;
     }
 
-    public static function fromPounds($pounds)
+    /**
+     * @param $money
+     * @param null $user
+     */
+    public function __construct($amount, $user = null)
     {
-        return new static($pounds * 100);
+        $this->user = $user ?: Auth::user();
+        $this->amount = $amount;
     }
 
-    public static function fromPence($pence)
+    /**
+     * @return string
+     */
+    public function formatMoney()
     {
-        return new static($pence);
+        return $this->traitformatMoney('amount');
     }
 
-    public function inPence()
+    public static function create($money, $user = null)
     {
-        return (string) $this->pence;
-    }
-
-    public function inPounds()
-    {
-        return (string) ( $this->pence / 100 );
-    }
-
-    public function inPoundsAndPence()
-    {
-        return number_format( $this->pence / 100, 2 );
+        return new self($money, $user);
     }
 
 }

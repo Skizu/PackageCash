@@ -5,26 +5,51 @@ namespace App\Money;
 
 trait MoneyTrait
 {
+    protected $_symbol = true;
+
     /**
      * @param $value
      * @return string
      */
-    public function money($value, $symbol = true)
+    public function money($value, $symbol = null)
     {
         return $this->monetary(function() use ($value, $symbol) {
-            $format = ($symbol) ? '%.2n' : '%!.2n';
+            $format = ($symbol?:$this->_symbol) ? '%.2n' : '%!.2n';
             return money_format($format, $value / 100);
         });
     }
 
 
     /**
-     * @param $property
      * @return string
      */
-    public function formatMoney($property, $symbol = true)
+    public function formatMoney()
     {
-        return $this->money($this->{$property}, $symbol);
+        $p = $this;
+
+        foreach(func_get_args() as $property) {
+            $p = $p->{$property};
+        }
+
+        return $this->money($p, $this->_symbol);
+    }
+
+    /**
+     * @return string
+     */
+    public function enableSymbol()
+    {
+        $this->_symbol = true;
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function disableSymbol()
+    {
+        $this->_symbol = false;
+        return $this;
     }
 
     /**
