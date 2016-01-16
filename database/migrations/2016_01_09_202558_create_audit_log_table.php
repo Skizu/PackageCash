@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateChequeTable extends Migration
+class CreateAuditLogTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,20 +12,15 @@ class CreateChequeTable extends Migration
      */
     public function up()
     {
-        Schema::create('cheques', function(Blueprint $table)
-        {
+        Schema::create('audit_log', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->integer('amount');
 
-            $table->integer('user_id');
+            $table->json('data');
 
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users');
-
-            $table->index(['user_id']);
         });
+
+        DB::statement('CREATE INDEX ix_audit_log_auditableid ON audit_log USING GIN (json_array_int(data->\'AuditableID\'));');
     }
 
     /**
@@ -35,6 +30,6 @@ class CreateChequeTable extends Migration
      */
     public function down()
     {
-        Schema::drop('cheques');
+        Schema::drop('audit_log');
     }
 }

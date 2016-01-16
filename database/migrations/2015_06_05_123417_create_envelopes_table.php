@@ -15,7 +15,7 @@ class CreateEnvelopesTable extends Migration {
 		Schema::create('envelopes', function(Blueprint $table)
 		{
 			$table->increments('id');
-            $table->char('name');
+            $table->string('name');
             $table->integer('amount');
 			$table->integer('colour')->default(0);
 
