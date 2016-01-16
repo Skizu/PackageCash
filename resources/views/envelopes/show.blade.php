@@ -21,7 +21,7 @@
                 <div class="action-panel">
                     <div class="row">
                         <h4 class="heading">Actions</h4>
-                        <a class="col-md-6 action">
+                        <a href="{{ route('envelope.transaction.create', [$envelope]) }}" class="col-md-6 action">
                             <span>Withdraw</span>
                             <span class="info">From Envelope</span>
                         </a>

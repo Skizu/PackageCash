@@ -16,8 +16,18 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-10">
-                <div class="well">
-                    <input data-filter="name" type="text" class="form-control input-lg" placeholder="Filter by name"/>
+                <div class="row">
+                    <div class="col-xs-8">
+                        <div class="well">
+                            <input data-filter="name" type="text" class="form-control input-lg"
+                                   placeholder="Filter by name"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="well text-center">
+                            Visible Total: <span data-fill="total">{{ $Money::create('0')->formatMoney() }}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-10">

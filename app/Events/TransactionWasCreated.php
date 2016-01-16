@@ -2,22 +2,27 @@
 
 namespace App\Events;
 
-use App\Events\Event;
+use App\Domain\Audit\EventType;
+use App\Transaction;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class TransactionWasCreated extends Event
+class TransactionWasCreated extends AuditEvent
 {
     use SerializesModels;
 
+
+    const EVENT_TYPE = EventType::TRANSACTION_CREATED;
+
     /**
-     * Create a new event instance.
+     * Create a new audit event instance.
      *
-     * @return void
+     * @param Transaction $transaction
+     * @param array $data
      */
-    public function __construct()
+    public function __construct(Transaction $transaction, $data = [])
     {
-        //
+        $this->setUpAudit($transaction, $data);
     }
 
     /**

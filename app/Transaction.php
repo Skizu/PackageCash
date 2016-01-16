@@ -1,8 +1,12 @@
 <?php namespace App;
 
+use App\Domain\Audit\Auditable;
+use App\Contracts\Auditable as AuditableContract;
 use Illuminate\Database\Eloquent\Model;
 
-class Transaction extends Model {
+class Transaction extends Model implements AuditableContract {
+
+    use Auditable;
 
     /**
      * The database table used by the model.
