@@ -13,9 +13,6 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\UserWasCreated' => [
-            'App\Listeners\AddToAudit',
-        ],
         'App\Events\ChequeWasCreated' => [
             'App\Listeners\AddToAudit',
         ],
