@@ -2,13 +2,15 @@
 
 namespace App;
 
+use App\Contracts\Auditable as AuditableContract;
+use App\Domain\Audit\Auditable;
 use App\Money\MoneyTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class Cheque extends Model
+class Cheque extends Model implements AuditableContract
 {
 
-    use MoneyTrait;
+    use MoneyTrait, Auditable;
 
     /**
      * The database table used by the model.
@@ -29,13 +31,8 @@ class Cheque extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function transactions()
+    public function transfers()
     {
-        return $this->morphMany('App\Transaction', 'source');
-    }
-
-    public function payments()
-    {
-        return $this->morphMany('App\Payment', 'source');
+        return $this->morphMany(Transfer::class, 'source');
     }
 }

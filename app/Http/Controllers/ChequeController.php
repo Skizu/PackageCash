@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Cheque;
+use App\Events\ChequeWasCreated;
+use App\Events\TransferWasCreated;
+use App\Transfer;
 use Auth;
+use Event;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -47,6 +51,8 @@ class ChequeController extends Controller
 
         $cheque->save();
 
+        Event::fire(new ChequeWasCreated($cheque, $cheque));
+
         return redirect()->route('cheque.show', $cheque);
     }
 
@@ -82,14 +88,27 @@ class ChequeController extends Controller
      */
     public function update(Request $request, Cheque $cheque)
     {
+        $description = $request->input('description');
         $amount = $request->input('amount') * 100;
         $envelope = Auth::user()->envelopes()->findOrFail($request->input('envelope'));
 
+        // TODO: Move to event
+        $transfer = new Transfer(['amount' => $amount, 'description' => $description]);
+        $transfer->source()->associate($cheque);
+        $transfer->destination()->associate($envelope);
+        Auth::user()->transfers()->save($transfer);
+
+        // TODO: Make updating part of the transfer event
         $cheque->amount = $cheque->amount - $amount;
         $envelope->amount = $envelope->amount + $amount;
 
         $envelope->save();
         $cheque->save();
+
+        $TransferWasCreated = new TransferWasCreated($transfer, $transfer);
+        $TransferWasCreated->addAuditable($cheque->auditable_id);
+        $TransferWasCreated->addAuditable($envelope->auditable_id);
+        Event::fire($TransferWasCreated);
 
         return redirect()->route('cheque.show', [$cheque->id]);
     }

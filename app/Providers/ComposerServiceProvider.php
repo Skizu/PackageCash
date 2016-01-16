@@ -1,6 +1,9 @@
 <?php namespace App\Providers;
 
 use App\Envelope;
+use App\Helpers\Money;
+use App\User;
+use Cache;
 use View;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,6 +18,18 @@ class ComposerServiceProvider extends ServiceProvider
     {
         View::composer('envelopes.template', function ($view) {
             $view->with('colours', Envelope::$colours);
+        });
+
+        View::composer('*', function ($view) {
+            $view->with('users', Cache::get('users', function () {
+                $users = User::all();
+                Cache::rememberForever('users', function () use ($users) {
+                    return $users;
+                });
+
+                return $users;
+            }));
+            $view->with('Money', Money::class);
         });
     }
 

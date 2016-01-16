@@ -1,11 +1,13 @@
 <?php namespace App;
 
+use App\Domain\Audit\Auditable;
+use App\Contracts\Auditable as AuditableContract;
 use Illuminate\Database\Eloquent\Model;
 use App\Money\MoneyTrait;
 
-class Envelope extends Model
+class Envelope extends Model implements AuditableContract
 {
-    use MoneyTrait;
+    use MoneyTrait, Auditable;
 
     const BLUE = 0;
     const GREEN = 1;
@@ -39,28 +41,28 @@ class Envelope extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
 
     public function transactions()
     {
-        return Transaction::where('source_id', $this->id)
-            ->orWhere('destination_id', $this->id)->get();
+        return $this->hasMany(Transaction::class);
     }
 
-    public function payments()
+    public function transfers()
     {
-        return $this->morphMany('App\Payment', 'source');
+        return Transfer::where('source_id', $this->id)
+            ->orWhere('destination_id', $this->id)->get();
     }
 
     public function source()
     {
-        return $this->morphMany('App\Transaction', 'source');
+        return $this->morphMany(Transfer::class, 'source');
     }
 
     public function destination()
     {
-        return $this->morphMany('App\Transaction', 'destination');
+        return $this->morphMany(Transfer::class, 'destination');
     }
 
     public function getColourAttribute($value)

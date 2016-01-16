@@ -1,11 +1,13 @@
 <?php namespace App\Http\Controllers;
 
 use App\Envelope;
+use App\Events\EnvelopeWasCreated;
 use App\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Auth;
+use Event;
 use Illuminate\Http\Request;
 
 class EnvelopeController extends Controller
@@ -57,6 +59,8 @@ class EnvelopeController extends Controller
 
         $envelope->save();
 
+        Event::fire(new EnvelopeWasCreated($envelope, $envelope));
+
         return $envelope;
     }
 
@@ -73,10 +77,11 @@ class EnvelopeController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     * @param Envelope $envelope
      */
-    public function edit($id)
+    public function edit(Envelope $envelope)
     {
-        //
+        return view('envelopes.edit', compact('envelope'));
     }
 
     /**
@@ -89,6 +94,8 @@ class EnvelopeController extends Controller
     public function update(Request $request, Envelope $envelope)
     {
         $envelope->colour = $request->input('colour');
+
+        $envelope->name = $request->input('name', $envelope->name);
 
         $envelope->save();
 

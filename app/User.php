@@ -2,15 +2,17 @@
 
 namespace App;
 
+use App\Domain\Audit\Auditable;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use App\Contracts\Auditable as AuditableContract;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract
+class User extends Model implements AuthenticatableContract, CanResetPasswordContract, AuditableContract
 {
-    use Authenticatable, CanResetPassword;
+    use Authenticatable, CanResetPassword, Auditable;
 
     /**
      * The database table used by the model.
@@ -35,21 +37,21 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function cheques()
     {
-        return $this->hasMany('App\Cheque');
+        return $this->hasMany(Cheque::class);
     }
 
     public function envelopes()
     {
-        return $this->hasMany('App\Envelope');
+        return $this->hasMany(Envelope::class);
     }
 
     public function transactions()
     {
-        return $this->hasMany('App\Transaction');
+        return $this->hasMany(Transaction::class);
     }
 
-    public function payments()
+    public function transfers()
     {
-        return $this->hasMany('App\Payment');
+        return $this->hasMany(Transfer::class);
     }
 }
