@@ -1,0 +1,2 @@
+<a href="{{ route('profile.show', [$UserID]) }}">{{ $users->find($UserID)->name }}</a> created a new cheque called <a
+        href="{{ route('cheque.show', [$ObjectID]) }}">{{ $Data->name }}</a> worth {{ $Money::create($Data->amount)->formatMoney() }}

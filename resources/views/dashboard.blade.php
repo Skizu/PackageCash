@@ -5,12 +5,11 @@
         <div class="row">
             <div class="col-xs-12 col-md-6">
                 <div class="well">
-                    <div class="h4 text-center">Recent Transactions</div>
+                    <div class="h4 text-center">Recent Activity</div>
                 </div>
-                @foreach($envelopes as $envelope)
-                    <div class="well well-muted">{{ $envelope->name }}</div>
-                @endforeach
+                @include('audit-log.logs', ['log' => Auth::user()->getAuditLog()])
             </div>
+            @if($UnsortedCheques->isEmpty() == false)
             <div class="col-xs-12 col-md-6">
                 <div class="well well-muted">
                     <div class="h4 text-center text-muted">Unsorted Cheques</div>
@@ -21,9 +20,10 @@
                     </div>
                 </div>
             </div>
+            @endif
             <div class="col-xs-12 col-md-4">
                 <div class="well">
-                    <input type="text" class="form-control input-md" placeholder="Search transactions"/>
+                    <input type="text" class="form-control input-md" placeholder="Search History"/>
                 </div>
             </div>
             <div class="col-xs-12 col-md-2">

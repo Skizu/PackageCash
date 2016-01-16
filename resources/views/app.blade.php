@@ -47,6 +47,7 @@
                     <li><a href="{{ url('/') }}">Home</a></li>
                 @else
                     <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                    <li><a href="{{ route('cheque.create') }}">Create Cheque</a></li>
                     <li><a href="{{ route('envelope.index') }}">Envelopes</a></li>
                 @endif
             </ul>
@@ -60,6 +61,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                            aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ route('profile.index') }}">Profile</a></li>
                             <li><a href="{{ url('/auth/logout') }}">Logout</a></li>
                         </ul>
                     </li>
@@ -71,7 +73,6 @@
 
 @yield('content')
 
-        <!-- Scripts -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 <script src="{{ elixir('js/app.js') }}"></script>
