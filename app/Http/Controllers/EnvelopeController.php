@@ -2,6 +2,7 @@
 
 use App\Envelope;
 use App\Events\EnvelopeWasCreated;
+use App\Events\EnvelopeWasRenamed;
 use App\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -97,7 +98,14 @@ class EnvelopeController extends Controller
 
         $envelope->name = $request->input('name', $envelope->name);
 
+        if ($envelope->isDirty('name')) {
+            $EnvelopeWasRenamed = new EnvelopeWasRenamed($envelope, $envelope->toArray());
+            $EnvelopeWasRenamed->addData('Original', $envelope->getOriginal());
+            Event::fire($EnvelopeWasRenamed);
+        }
+
         $envelope->save();
+
 
         return ($request->isJson()) ? $envelope : redirect()->route('envelope.show', $envelope);
     }

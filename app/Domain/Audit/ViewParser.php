@@ -11,6 +11,7 @@ class ViewParser
         EventType::USER_CREATED => 'audit.user-created',
         EventType::CHEQUE_CREATED => 'audit.cheque-created',
         EventType::ENVELOPE_CREATED => 'audit.envelope-created',
+        EventType::ENVELOPE_RENAMED => 'audit.envelope-renamed',
         EventType::TRANSFER_CREATED => 'audit.transfer-created',
         EventType::TRANSACTION_CREATED => 'audit.transaction_created'
     ];

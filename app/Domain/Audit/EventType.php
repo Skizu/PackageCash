@@ -12,6 +12,7 @@ class EventType
     const CHEQUE_CREATED = 201;
 
     const ENVELOPE_CREATED = 301;
+    const ENVELOPE_RENAMED = 302;
 
     const TRANSFER_CREATED = 401;
 

@@ -3,15 +3,15 @@
 namespace App\Events;
 
 use App\Domain\Audit\EventType;
-use App\User;
-use Illuminate\Queue\SerializesModels;
 use App\Envelope;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class EnvelopeWasCreated extends AuditEvent
+class EnvelopeWasRenamed extends AuditEvent
 {
     use SerializesModels;
 
-    const EVENT_TYPE = EventType::ENVELOPE_CREATED;
+    const EVENT_TYPE = EventType::ENVELOPE_RENAMED;
 
     /**
      * Create a new audit event instance.
