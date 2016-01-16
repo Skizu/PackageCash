@@ -37,13 +37,13 @@ $factory->define(App\Envelope::class, function ($faker) {
 $factory->define(App\Transaction::class, function ($faker) {
     return [
         'description' => $faker->sentence,
-        'amount' => $faker->randomFloat,
+        'amount' => $faker->randomNumber(5),
     ];
 });
 
-$factory->define(App\Payment::class, function ($faker) {
+$factory->define(App\Transfer::class, function ($faker) {
     return [
         'description' => $faker->sentence,
-        'amount' => $faker->randomFloat(2),
+        'amount' => $faker->randomNumber(5),
     ];
 });

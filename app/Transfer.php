@@ -1,15 +1,20 @@
 <?php namespace App;
 
+use App\Contracts\Auditable as AuditableContract;
+use App\Domain\Audit\Auditable;
+use App\Money\MoneyTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class Payment extends Model {
+class Transfer extends Model implements AuditableContract {
+
+    use MoneyTrait, Auditable;
 
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'payments';
+    protected $table = 'transfers';
 
     /**
      * The attributes that are mass assignable.
@@ -23,9 +28,14 @@ class Payment extends Model {
         return $this->morphTo();
     }
 
+    public function destination()
+    {
+        return $this->morphTo();
+    }
+
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
 
 

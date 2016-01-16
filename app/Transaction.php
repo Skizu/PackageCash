@@ -18,19 +18,14 @@ class Transaction extends Model {
      */
     protected $fillable = ['description', 'amount'];
 
-    public function destination()
+    public function envelope()
     {
-        return $this->morphTo();
-    }
-
-    public function source()
-    {
-        return $this->morphTo();
+        return $this->belongsTo(Envelope::class);
     }
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
 
 
