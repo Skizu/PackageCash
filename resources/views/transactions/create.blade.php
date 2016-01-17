@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Withdraw From {{ $name }}</div>
+                    <div class="panel-heading">Withdraw From {{ $envelope->name }}</div>
                     <div class="panel-body">
                         @if (count($errors) > 0)
                             <div class="alert alert-danger">
@@ -17,8 +17,21 @@
                             </div>
                         @endif
 
-                        <form class="form-horizontal" role="form" method="POST" action="{{ route('envelope.transaction.store', [$id]) }}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ route('envelope.transaction.store', [$envelope->id]) }}">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Balance</label>
+
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">{{ $envelope->currencySymbol() }}</div>
+                                        <input type="text" class="form-control" name="balance"
+                                               value="{{ $envelope->disableSymbol()->formatMoney('amount') }}"
+                                               placeholder="balance" disabled>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Amount</label>

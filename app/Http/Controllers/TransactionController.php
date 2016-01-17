@@ -30,7 +30,9 @@ class TransactionController extends Controller {
 	 */
 	public function create(Envelope $envelope)
 	{
-		return view('transactions.create', $envelope->toArray());
+		return view('transactions.create', [
+			'envelope' => $envelope
+		]);
 	}
 
 	/**
