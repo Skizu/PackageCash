@@ -25,7 +25,8 @@
                     </div>
                     <div class="col-xs-4">
                         <div class="well text-center">
-                            Visible Total: <span data-fill="total">{{ $Money::create('0')->formatMoney() }}</span>
+                            Visible Total: {{ $Money::create('0')->currencySymbol() }}<span
+                                    data-fill="total">{{ $Money::create(Auth::user()->envelopes->sum('amount'))->disableSymbol()->formatMoney() }}</span>
                         </div>
                     </div>
                 </div>

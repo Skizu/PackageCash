@@ -68,12 +68,20 @@ function filterEnvelopes() {
         return $(this).data('colour');
     }).get();
 
+    $total = 0;
 
     $('.envelopes').find('[data-colour].envelope').each(function(id, envelope) {
         colour = $(envelope).data('colour');
         name = $(envelope).find('[data-name]').data('name');
         active = $.inArray(colour, $active) > -1;
         queryMatch = $(envelope).has('[data-name*="' + $query + '"]').length ? true : $query.length ? false : true;
-        $(envelope).parent('div').toggleClass('hide', (active && queryMatch) == false);
+        hide = (active && queryMatch) == false;
+
+        if(hide == false) {
+            $total+= Number($(envelope).data('amount'));
+        }
+        $(envelope).parent('div').toggleClass('hide', hide);
     });
+
+    $('[data-fill="total"]').text(parseFloat($total).toFixed(2));
 }
