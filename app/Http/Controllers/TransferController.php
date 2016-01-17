@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Envelope;
+use App\Events\TransferWasCreated;
 use App\Transfer;
+use Auth;
+use Event;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -21,24 +25,50 @@ class TransferController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Update the specified resource in storage.
      *
-     * @return \Illuminate\Http\Response
+     * @param  Request $request
+     * @param Envelope $envelope
+     * @return Response
      */
-    public function create()
+    public function create(Request $request, Envelope $envelope)
     {
-        //
+        $envelopes = Auth::user()->envelopes;
+        return view('transfers.create', compact('envelope', 'envelopes'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  Request $request
+     * @param Envelope $source
+     * @return Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Envelope $source)
     {
-        //
+        $description = $request->input('description');
+        $amount = $request->input('amount') * 100;
+        $envelope = Auth::user()->envelopes()->findOrFail($request->input('envelope'));
+
+        // TODO: Move to event
+        $transfer = new Transfer(['amount' => $amount, 'description' => $description]);
+        $transfer->source()->associate($source);
+        $transfer->destination()->associate($envelope);
+        Auth::user()->transfers()->save($transfer);
+
+        // TODO: Make updating part of the transfer event
+        $source->amount = $source->amount - $amount;
+        $envelope->amount = $envelope->amount + $amount;
+
+        $envelope->save();
+        $source->save();
+
+        $TransferWasCreated = new TransferWasCreated($transfer, $transfer);
+        $TransferWasCreated->addAuditable($source->auditable_id);
+        $TransferWasCreated->addAuditable($envelope->auditable_id);
+        Event::fire($TransferWasCreated);
+
+        return redirect()->route('envelope.show', [$source]);
     }
 
     /**

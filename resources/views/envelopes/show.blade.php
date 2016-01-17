@@ -25,7 +25,7 @@
                             <span>Withdraw</span>
                             <span class="info">From Envelope</span>
                         </a>
-                        <a class="col-md-6 action">
+                        <a href="{{ route('envelope.transfer.create', [$envelope]) }}" class="col-md-6 action">
                             <span>Transfer</span>
                             <span class="info">From Envelope</span>
                         </a>
