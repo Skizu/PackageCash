@@ -1,4 +1,11 @@
 .action-panel {
+  a.action,
+  a.super-action {
+    &:hover {
+      font-weight: inherit;
+    }
+  }
+
   .heading {
     padding: 6px 6px 0;
     margin-bottom: 0;

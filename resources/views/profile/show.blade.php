@@ -1,13 +1,16 @@
 @extends('app')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <h1>{{ $user->name }}</h1>
-            <hr/>
+    <div class="page container">
+        <div class="header">
+            <div class="titles">
+                <h3>
+                    {{ $user->name }}
+                </h3>
+            </div>
         </div>
-        <div class="row">
-            <div class="auditLog">
+        <div class="content row">
+            <div class="auditLog col-xs-6">
                 <h2>Audit Log</h2>
 
                 @include('audit-log.logs', ['log' => $user->getAuditLog()])

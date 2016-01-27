@@ -1,29 +1,25 @@
 @extends('app')
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-8">
-                <div class="header well">
-                    <span class="glyphicon glyphicon-envelope icon"></span> {{ $cheque->name }}
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4">
-                <div class="well text-center">
-                    <div class="row">
-                        <div class="col-sm-12 big"><strong>Balance: {{ $cheque->formatMoney('amount') }}</strong></div>
-                        @if($cheque->amount > 0)
-                            <div class="col-sm-12">
-                                <a href="{{ route('cheque.edit', [$cheque->id]) }}"
-                                   class="btn btn-default btn-small">Distribute</a>
-                            </div>
-                        @endif
+    <div class="page container">
+        <div class="header">
+            <h3>{{ $cheque->name }}</h3>
+            <h6>Created: {{ $cheque->created_at->format('m/d/Y g:iA') }}</h6>
+        </div>
+        <div class="content row">
+            @if($cheque->amount > 0)
+                <div class="col-xs-12 col-md-3">
+                    <div class="action-panel">
+                        <h6 class="header default">Actions</h6>
+                        <a href="{{ route('cheque.edit', [$cheque]) }}" class="col-md-12 super-action">
+                            <span>Distribute</span><span class="info">Into Envelopes</span>
+                        </a>
                     </div>
                 </div>
+            @endif
+            <div class="col-xs-12 @if($cheque->amount > 0) col-md-9 @endif">
+                <h6 class="header default">Transaction History</h6>
+                @include('audit-log.logs', ['log' => $cheque->getAuditLog()])
             </div>
-        </div>
-        <div>
-            <div class="transaction big text-center">Transaction History</div>
-            @include('audit-log.logs', ['log' => $cheque->getAuditLog()])
         </div>
     </div>
 @endsection

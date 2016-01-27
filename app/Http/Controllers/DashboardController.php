@@ -36,9 +36,12 @@ class DashboardController extends Controller
     public function getIndex()
     {
         $envelopes = $this->user->envelopes;
-        $total = $this->money($envelopes->sum('amount'));
-        $UnsortedCheques = $this->user->cheques()->where('amount', '>', 0)->get();
-        return view('dashboard', compact('total', 'UnsortedCheques', 'envelopes'));
+        $UnsortedCheques = $this->user->cheques()->unsorted();
+        $UnsortedEnvelopes = $this->user->envelopes()->unsorted();
+        $total = $this->money($envelopes->sum('amount') + $UnsortedCheques->sum('amount'));
+        $packages = $this->user->packages;
+
+        return view('dashboard', compact('total', 'UnsortedCheques', 'UnsortedEnvelopes', 'envelopes', 'packages'));
     }
 
 }

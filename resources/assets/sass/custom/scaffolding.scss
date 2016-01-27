@@ -1,11 +1,48 @@
 body {
   font-weight: $font-weight;
+  background: $page-bg;
 }
 
-.header {
-  font-size: 2em;
-  .well {
-    padding: 0.25em;
+.navbar {
+  border-radius: 0;
+  box-shadow: 0 0 10px 0 $gray-darker;
+}
+
+.page {
+  background-color: $page-container-bg;
+  border: 1px solid $theme-grey;
+  padding: 0;
+
+  a:hover {
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .header {
+    background-color: #009CDE;
+    border-bottom: 1px solid $theme-grey;
+    color: white !important;
+    padding: 15px;
+
+    @include clearfix;
+
+    h1, h2, h3, h4, h5, h6,
+    .h1, .h2, .h3, .h4, .h5, .h6 {
+      color: white;
+      margin: 0;
+    }
+
+    .titles {
+      float: left;
+    }
+
+    .data {
+      float:right;
+    }
+  }
+
+  .content {
+    padding: 15px;
   }
 }
 
@@ -19,4 +56,10 @@ body {
 
 .well {
   color: $theme-contrast-text-color;
+}
+
+.form-control.basic {
+  border-width: 0 0 1px;
+  border-color: $theme-grey;
+  border-radius: 0;
 }

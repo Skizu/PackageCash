@@ -128,7 +128,7 @@ $colours: (
 #envelope {
   @each $class, $colour in $colours {
     &.#{$class} {
-      .header {
+      .header:not(.default) {
         background-color: lighten($colour, 10%);
         .icon {
           color: darken($colour, 10%);

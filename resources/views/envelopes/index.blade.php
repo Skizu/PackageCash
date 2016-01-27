@@ -1,8 +1,24 @@
 @extends('app')
 
 @section('content')
-    <div class="container">
-        <div class="row">
+    <div class="page container">
+        <div class="header">
+            <div class="titles">
+                <h3>
+                    Envelopes
+                </h3>
+                <h6>
+                    Manage your envelopes
+                </h6>
+            </div>
+            <div class="data">
+                <h4>Visible Total:
+                    <strong>{{ $Money::create('0')->currencySymbol() }}<span
+                                data-fill="total">{{ $Money::create(Auth::user()->envelopes->sum('amount'))->disableSymbol()->formatMoney() }}</span></strong>
+                </h4>
+            </div>
+        </div>
+        <div class="content row">
             <div class="col-sm-2 hidden-xs">
                 <div class="dashbar well">
                     <div class="h4 text-center">Filter Colour</div>
@@ -15,20 +31,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-10">
-                <div class="row">
-                    <div class="col-xs-8">
-                        <div class="well">
-                            <input data-filter="name" type="text" class="form-control input-lg"
-                                   placeholder="Filter by name"/>
-                        </div>
-                    </div>
-                    <div class="col-xs-4">
-                        <div class="well text-center">
-                            Visible Total: {{ $Money::create('0')->currencySymbol() }}<span
-                                    data-fill="total">{{ $Money::create(Auth::user()->envelopes->sum('amount'))->disableSymbol()->formatMoney() }}</span>
-                        </div>
-                    </div>
+            <div class="col-xs-10">
+                <div class="form-group">
+                    <input data-filter="name" type="text" class="form-control basic input-lg" placeholder="Filter by name"/>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-10">

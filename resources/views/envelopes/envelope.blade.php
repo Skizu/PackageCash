@@ -1,6 +1,6 @@
 <div class="envelope clickable" data-id="{{ $envelope->id }}"
      data-colour="{{ $envelope->colour }}"
-     data-amount="{{ $envelope->disableSymbol()->formatMoney('amount') }}">
+     data-amount="{{ $envelope->disableSymbol()->disableSeparator()->formatMoney('amount') }}">
     <div class="background"></div>
     <div class="flap"></div>
     <div class="details text-center">
@@ -14,6 +14,6 @@
                 @endforeach
             </div>
         </div>
-        <div class="amount text-center">{{ $envelope->enableSymbol()->formatMoney('amount') }}</div>
+        <div class="amount text-center">{{ $envelope->enableSymbol()->enableSeparator()->formatMoney('amount') }}</div>
     </div>
 </div>

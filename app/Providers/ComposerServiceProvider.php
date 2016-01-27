@@ -2,6 +2,7 @@
 
 use App\Envelope;
 use App\Helpers\Money;
+use App\Helpers\AuditLogDateHandler;
 use App\User;
 use Cache;
 use View;
@@ -30,6 +31,10 @@ class ComposerServiceProvider extends ServiceProvider
                 return $users;
             }));
             $view->with('Money', Money::class);
+        });
+
+        View::composer('audit-log.logs', function($view) {
+            $view->with('AuditLogDateHandler', new AuditLogDateHandler);
         });
     }
 

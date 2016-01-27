@@ -1,6 +1,10 @@
 .timeline {
   position: relative;
 
+  a {
+    text-decoration: none;
+  }
+
   .bar {
     position: absolute;
     width: 4px;
@@ -8,7 +12,18 @@
     display: inline-block;
     height: 100%;
     left: 37px;
-    z-index: -1;
+  }
+
+  .date {
+    position: relative;
+    background-color: #fff;
+    padding: 15px;
+    font-weight: bold;
+    width: 100%;
+
+    &:empty {
+      display: none;
+    }
   }
 
   .icon {
@@ -28,6 +43,7 @@
     float: left;
     vertical-align: top;
     position: relative;
+    z-index: 999;
   }
 
   .entry {
