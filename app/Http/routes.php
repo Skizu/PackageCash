@@ -23,6 +23,7 @@ Route::group(['middleware' => 'auth'], function () {
         'envelope' => 'EnvelopeController',
         'envelope.transaction' => 'TransactionController',
         'envelope.transfer' => 'TransferController',
+        'package' => 'PackageController',
         'cheque' => 'ChequeController',
         'transfer' => 'TransferController',
     ]);
