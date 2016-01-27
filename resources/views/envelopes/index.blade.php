@@ -31,7 +31,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-10">
+            <div class="col-xs-12 col-md-10">
                 <div class="form-group">
                     <input data-filter="name" type="text" class="form-control basic input-lg" placeholder="Filter by name"/>
                 </div>
