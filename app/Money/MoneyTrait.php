@@ -6,15 +6,22 @@ namespace App\Money;
 trait MoneyTrait
 {
     protected $_symbol = true;
+    protected $_separator = true;
 
     /**
      * @param $value
      * @return string
      */
-    public function money($value, $symbol = null)
+    public function money($value, $symbol = null, $separator = null)
     {
-        return $this->monetary(function() use ($value, $symbol) {
-            $format = ($symbol?:$this->_symbol) ? '%.2n' : '%!.2n';
+        return $this->monetary(function() use ($value, $symbol, $separator) {
+            $format = '%^!.2n';
+            if(($symbol?:$this->_symbol) == true) {
+                $format = str_replace('!', '', $format);
+            }
+            if(($separator?:$this->_separator) == true) {
+                $format = str_replace('^', '', $format);
+            }
             return money_format($format, $value / 100);
         });
     }
@@ -49,6 +56,23 @@ trait MoneyTrait
     public function disableSymbol()
     {
         $this->_symbol = false;
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function disableSeparator()
+    {
+        $this->_separator = false;
+        return $this;
+    }
+    /**
+     * @return $this
+     */
+    public function enableSeparator()
+    {
+        $this->_separator = true;
         return $this;
     }
 

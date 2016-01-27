@@ -12,7 +12,7 @@ class Money
     }
 
     /**
-     * @param $money
+     * @param $amount
      * @param null $user
      */
     public function __construct($amount, $user = null)
