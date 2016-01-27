@@ -40,6 +40,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->hasMany(Cheque::class);
     }
 
+    public function packages()
+    {
+        return $this->hasMany(Package::class);
+    }
+
     public function envelopes()
     {
         return $this->hasMany(Envelope::class);

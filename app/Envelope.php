@@ -2,6 +2,7 @@
 
 use App\Domain\Audit\Auditable;
 use App\Contracts\Auditable as AuditableContract;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use App\Money\MoneyTrait;
 
@@ -63,6 +64,15 @@ class Envelope extends Model implements AuditableContract
     public function destination()
     {
         return $this->morphMany(Transfer::class, 'destination');
+    }
+
+    public function package()
+    {
+        return $this->belongsTo(Package::class);
+    }
+
+    public function scopeUnsorted(Builder $query) {
+        return $query->whereDoesntHave('package')->get();
     }
 
     public function getColourAttribute($value)

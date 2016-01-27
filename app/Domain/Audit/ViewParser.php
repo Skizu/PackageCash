@@ -13,7 +13,8 @@ class ViewParser
         EventType::ENVELOPE_CREATED => 'audit.envelope-created',
         EventType::ENVELOPE_RENAMED => 'audit.envelope-renamed',
         EventType::TRANSFER_CREATED => 'audit.transfer-created',
-        EventType::TRANSACTION_CREATED => 'audit.transaction-created'
+        EventType::TRANSACTION_CREATED => 'audit.transaction-created',
+        EventType::PACKAGE_CREATED => 'audit.package-created'
     ];
 
     protected $auditLog;

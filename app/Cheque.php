@@ -5,6 +5,7 @@ namespace App;
 use App\Contracts\Auditable as AuditableContract;
 use App\Domain\Audit\Auditable;
 use App\Money\MoneyTrait;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Cheque extends Model implements AuditableContract
@@ -34,5 +35,9 @@ class Cheque extends Model implements AuditableContract
     public function transfers()
     {
         return $this->morphMany(Transfer::class, 'source');
+    }
+
+    public function scopeUnsorted(Builder $query) {
+        return $query->where('amount', '>', 0)->get();
     }
 }

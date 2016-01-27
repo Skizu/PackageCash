@@ -17,4 +17,6 @@ class EventType
     const TRANSFER_CREATED = 401;
 
     const TRANSACTION_CREATED = 501;
+
+    const PACKAGE_CREATED = 601;
 }
