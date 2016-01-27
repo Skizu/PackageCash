@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\ChequeWasCreated' => [
             'App\Listeners\AddToAudit',
         ],
+        'App\Events\PackageWasCreated' => [
+            'App\Listeners\AddToAudit',
+        ],
         'App\Events\EnvelopeWasCreated' => [
             'App\Listeners\AddToAudit',
         ],
