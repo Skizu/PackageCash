@@ -23,7 +23,7 @@
         <env name="APP_ENV" value="testing"/>
         <env name="DB_USERNAME" value="dev"/>
         <env name="DB_DATABASE" value="phpunit"/>
-        <env name="CACHE_DRIVER" value="array"/>
+        <env name="CACHE_DRIVER" value="file"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_DRIVER" value="sync"/>
     </php>
