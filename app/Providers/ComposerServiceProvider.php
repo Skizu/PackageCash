@@ -22,14 +22,7 @@ class ComposerServiceProvider extends ServiceProvider
         });
 
         View::composer('*', function ($view) {
-            $view->with('users', Cache::get('users', function () {
-                $users = User::all();
-                Cache::rememberForever('users', function () use ($users) {
-                    return $users;
-                });
-
-                return $users;
-            }));
+            $view->with('users', Cache::rememberForever('users', function() { return User::all(); }));
             $view->with('Money', Money::class);
         });
 
