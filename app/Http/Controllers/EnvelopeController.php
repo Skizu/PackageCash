@@ -1,6 +1,8 @@
 <?php namespace App\Http\Controllers;
 
 use App\Envelope;
+use App\Events\EnvelopePackageWasAssigned;
+use App\Events\EnvelopePackageWasUnassigned;
 use App\Events\EnvelopeWasCreated;
 use App\Events\EnvelopeWasRenamed;
 use App\User;
@@ -78,11 +80,15 @@ class EnvelopeController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     *
      * @param Envelope $envelope
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Envelope $envelope)
     {
-        return view('envelopes.edit', compact('envelope'));
+        $packages = $envelope->user->packages;
+
+        return view('envelopes.edit', compact('envelope', 'packages'));
     }
 
     /**
@@ -95,13 +101,21 @@ class EnvelopeController extends Controller
     public function update(Request $request, Envelope $envelope)
     {
         $envelope->colour = $request->input('colour');
-
         $envelope->name = $request->input('name', $envelope->name);
+        $package = $request->input('package');
+        $envelope->package()->associate(empty($package) ? null : $package);
 
         if ($envelope->isDirty('name')) {
             $EnvelopeWasRenamed = new EnvelopeWasRenamed($envelope, $envelope->toArray());
             $EnvelopeWasRenamed->addData('Original', $envelope->getOriginal());
             Event::fire($EnvelopeWasRenamed);
+        }
+
+        if ($envelope->isDirty('package_id')) {
+            $event = ($envelope->package) ? EnvelopePackageWasAssigned::class : EnvelopePackageWasUnassigned::class;
+            $EnvelopeWasAssignedPackage = new $event($envelope, $envelope->toArray());
+            $EnvelopeWasAssignedPackage->addData('Original', $envelope->getOriginal());
+            Event::fire($EnvelopeWasAssignedPackage);
         }
 
         $envelope->save();

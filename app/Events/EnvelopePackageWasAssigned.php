@@ -7,9 +7,9 @@ use App\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class EnvelopeWasRenamed extends EnvelopeUpdateEvent
+class EnvelopePackageWasAssigned extends EnvelopeUpdateEvent
 {
     use SerializesModels;
 
-    const EVENT_TYPE = EventType::ENVELOPE_RENAMED;
+    const EVENT_TYPE = EventType::ENVELOPE_PACKAGE_ASSIGNED;
 }

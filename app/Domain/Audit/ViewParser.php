@@ -12,6 +12,8 @@ class ViewParser
         EventType::CHEQUE_CREATED => 'audit.cheque-created',
         EventType::ENVELOPE_CREATED => 'audit.envelope-created',
         EventType::ENVELOPE_RENAMED => 'audit.envelope-renamed',
+        EventType::ENVELOPE_PACKAGE_ASSIGNED => 'audit.envelope-package-assigned',
+        EventType::ENVELOPE_PACKAGE_UNASSIGNED => 'audit.envelope-package-unassigned',
         EventType::TRANSFER_CREATED => 'audit.transfer-created',
         EventType::TRANSACTION_CREATED => 'audit.transaction-created',
         EventType::PACKAGE_CREATED => 'audit.package-created'

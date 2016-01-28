@@ -13,6 +13,8 @@ class EventType
 
     const ENVELOPE_CREATED = 301;
     const ENVELOPE_RENAMED = 302;
+    const ENVELOPE_PACKAGE_ASSIGNED = 303;
+    const ENVELOPE_PACKAGE_UNASSIGNED = 304;
 
     const TRANSFER_CREATED = 401;
 

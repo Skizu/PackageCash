@@ -47,6 +47,21 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="package" class="col-md-4 control-label">Package</label>
+
+                                <div class="col-md-6">
+                                    <select id="package" class="form-control" name="package">
+                                        <option value>None</option>
+                                        @foreach($packages as $package)
+                                            <option value="{{ $package->id  }}"
+                                                    @if($package == $envelope->package)selected="selected"@endif>
+                                                {{ ucwords($package->name) }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <div class="col-md-8 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">Update</button>
                                 </div>
