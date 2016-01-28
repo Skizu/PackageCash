@@ -67,6 +67,7 @@ $colours: (
       input {
         border: none;
         background-color: rgba(255, 255, 255, 0.6);
+        max-width: 100%;
 
         @include border-top-radius(5px);
         @include border-bottom-radius(5px);
