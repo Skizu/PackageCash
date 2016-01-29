@@ -20,6 +20,13 @@ class Package extends Model implements AuditableContract
     protected $table = 'packages';
 
     /**
+     * The relations to eager load on every query.
+     *
+     * @var array
+     */
+    protected $with = ['envelopes'];
+
+    /**
      * The accessors to append to the model's array form.
      *
      * @var array
@@ -45,6 +52,6 @@ class Package extends Model implements AuditableContract
 
     public function getAmountAttribute()
     {
-        return $this->envelopes()->sum('amount');
+        return $this->envelopes->sum('amount');
     }
 }
