@@ -19,21 +19,20 @@
             </div>
         </div>
         <div class="content row">
-            <div class="col-sm-2 hidden-xs">
-                <div class="dashbar well">
-                    <div class="h4 text-center">Filter Colour</div>
-                    <div class="row" data-filter="colour">
-                        @foreach(App\Envelope::$colours as $colour)
-                            <div class="col-sm-12 col-md-6 blocks">
-                                <div class="clickable block {{ $colour }}" data-colour="{{ $colour }}"></div>
-                            </div>
-                        @endforeach
-                    </div>
+            <div class="col-sm-2 hidden-xs text-center">
+                <div class="header"><h6>Filter Colour</h6></div>
+                <div class="" data-filter="colour">
+                    @foreach(App\Envelope::$colours as $colour)
+                        <div class="blocks">
+                            <div class="clickable block {{ $colour }}" data-colour="{{ $colour }}"></div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
             <div class="col-xs-12 col-md-10">
                 <div class="form-group">
-                    <input data-filter="name" type="text" class="form-control basic input-lg" placeholder="Filter by name"/>
+                    <input data-filter="name" type="text" class="form-control basic input-lg"
+                           placeholder="Filter by name"/>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-10">
