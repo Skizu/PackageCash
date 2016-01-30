@@ -34,6 +34,13 @@ class Envelope extends Model implements AuditableContract
     protected $table = 'envelopes';
 
     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['currencyAmount'];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -83,6 +90,10 @@ class Envelope extends Model implements AuditableContract
     public function setColourAttribute($value)
     {
         return $this->attributes['colour'] = array_search($value, self::$colours);
+    }
+
+    public function getCurrencyAmountAttribute($value) {
+        return $this->formatMoney('amount');
     }
 
     public function colourOptions()

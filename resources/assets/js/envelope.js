@@ -41,7 +41,7 @@ $('.envelopes')
             $envelope.attr('data-colour', data['colour']);
             $envelope.data('colour', data['colour']);
             $envelope.find('.name').text(data['name']);
-            $envelope.find('.amount').text(data['amount']);
+            $envelope.find('.amount').text(data['currencyAmount']);
 
             $new.insertBefore( $('.envelope.new').parent() );
 

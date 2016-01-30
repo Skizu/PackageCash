@@ -1,4 +1,4 @@
-<div class="envelope template">
+<div class="envelope clickable template">
     <div class="background"></div>
     <div class="flap"></div>
     <div class="details text-center">
