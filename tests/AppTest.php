@@ -1,7 +1,11 @@
 <?php
 
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+
 class AppTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /**
      * A basic functional test.
      *
@@ -10,6 +14,6 @@ class AppTest extends TestCase
     public function testAppStarts()
     {
         $this->visit('/')
-             ->see('PostalCache');
+            ->see('PostalCache');
     }
 }
