@@ -3,9 +3,8 @@
 use App\Contracts\Auditable as AuditableContract;
 use App\Domain\Audit\Auditable;
 use App\Money\MoneyTrait;
-use Illuminate\Database\Eloquent\Model;
 
-class Transfer extends Model implements AuditableContract {
+class Transfer extends OwnedModel implements AuditableContract {
 
     use MoneyTrait, Auditable;
 

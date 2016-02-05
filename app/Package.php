@@ -5,10 +5,8 @@ namespace App;
 use App\Domain\Audit\Auditable;
 use App\Contracts\Auditable as AuditableContract;
 use App\Money\MoneyTrait;
-use Cache;
-use Illuminate\Database\Eloquent\Model;
 
-class Package extends Model implements AuditableContract
+class Package extends OwnedModel implements AuditableContract
 {
     use MoneyTrait, Auditable;
 

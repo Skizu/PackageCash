@@ -3,10 +3,9 @@
 use App\Domain\Audit\Auditable;
 use App\Contracts\Auditable as AuditableContract;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use App\Money\MoneyTrait;
 
-class Envelope extends Model implements AuditableContract
+class Envelope extends OwnedModel implements AuditableContract
 {
     use MoneyTrait, Auditable;
 
