@@ -17,14 +17,14 @@
                 <div class="icon"></div>
                 <div>{!! $entry->view()->parse() !!}</div>
                 <div class="details">
-                    {{ $users->find($entry->data->UserID)->name }} ·
+                    {{ $users->find($entry->data->UserID)->name }} &middot;
                     <time datetime="{{ $entry->created_at }}"
                           title="{{ $entry->created_at->format('m/d/Y g:iA') }}">
                         {{ $entry->created_at->diffForHumans() }}</time>
-                    ·
+                    &middot;
                     <a class="text-muted" role="button" data-toggle="collapse" href="#entry_{{ $entry->id }}"
                        aria-expanded="false" aria-controls="entry_{{ $entry->id }}">
-                        More <span class="glyphicon glyphicon-triangle-bottom"></span>
+                        More <span class="caret"></span>
                     </a>
 
                     <div class="table-responsive collapse" id="entry_{{ $entry->id }}">
