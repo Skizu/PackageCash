@@ -10,14 +10,46 @@
                 </div>
                 <div class="data col-md-6 text-right">
                     <h4>Current Balance</h4>
-                    <strong>{{ $total }}</strong>
+                    <strong>{{ $Total }}</strong>
                 </div>
             </div>
         </div>
         <div class="content row">
+            @if($TutorialComplete == false)
+                <div class="col-xs-12">
+                    <div class="header">
+                        <h4>Tutorial</h4>
+                    </div>
+                    <div class="content button-group stages text-center">
+                        @if($Tutorial->getState())
+                            <div class="help"><span class="h5">Why does this do?</span>
+                                <p>Please click the current option to follow instructions.</p></div>
+
+                            <div id="tutorial" class="btn-group" role="group">
+                                @foreach ($Steps as $step => $data)
+                                    <button type="button" class="btn btn-default"
+                                            data-current="{{ $Tutorial->can($step) }}"
+                                            data-step="{{ $step }}"
+                                            data-menu="{{ $data['in_menu'] }}"
+                                            title="{{ $data['name'] }}">{{ $data['step'] }}<span
+                                                class="hidden-xs">. {{ $data['name'] }}</span>
+                                    </button>
+                                @endforeach
+                            </div>
+                        @else
+                            <p class="alert alert-info">Would you like to take the tutorial to help you find your way
+                                around the application?</p>
+                            <button class="btn btn-success">Yes</button>
+                            <button class="btn btn-warning">Skip</button>
+                        @endif
+                    </div>
+                </div>
+            @endif
             <div class="col-xs-12 col-md-push-6 col-md-6">
                 @if($UnsortedCheques->isEmpty() == false)
-                    <div class="header">
+                    <div class="header" data-container="body" data-placement="top" data-title="Creating a Package"
+                         data-content="Packages are a way to group your envelopes."
+                         data-tutorial="{{ $TutorialState::DISTRIBUTE_CHEQUE }}">
                         <h4>Unsorted Cheques</h4>
                     </div>
                     <table class="table table-hover table-striped content">
@@ -39,7 +71,10 @@
                     </table>
                 @endif
                 @if($UnsortedEnvelopes->isEmpty() == false)
-                    <div class="header">
+                    <div class="header" data-container="body" data-placement="top"
+                         data-title="Assigning Envelopes to a Package"
+                         data-content="Not only does this visually assist in managing money, but you are also able to use some more advanced features on packages."
+                         data-tutorial="{{ $TutorialState::ASSIGN_PACKAGE }}">
                         <h4>Unsorted Envelopes</h4>
                     </div>
                     <table class="table table-hover table-striped content">
@@ -78,15 +113,19 @@
                     </tr>
                     </tfoot>
                     <tbody>
-                    @foreach($packages as $package)
+                    @forelse($packages as $package)
                         <tr>
                             <td class="text-left"><a
                                         href="{{ route('package.show', [$package->id]) }}">{{ $package->name }}</a></td>
-                            <td class="text-right"><a
-                                        href="{{ route('package.show', [$package->id]) }}">{{ $package->formatMoney('amount') }}</a>
+                            <td>
+                                <a href="{{ route('package.show', [$package->id]) }}">{{ $package->formatMoney('amount') }}</a>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td class="text-left" colspan="2">You currently have no packages.</td>
+                        </tr>
+                    @endforelse
                     </tbody>
                 </table>
             </div>
@@ -95,10 +134,6 @@
                     <div class="titles">
                         <h4>Recent Activity</h4>
                     </div>
-                </div>
-                <div class="form-group has-feedback">
-                    <input type="text" class="form-control basic input-md" placeholder="Search History"/>
-                    <span class="glyphicon glyphicon-search form-control-feedback"></span>
                 </div>
                 @include('audit-log.logs', ['log' => Auth::user()->getAuditLog()])
             </div>

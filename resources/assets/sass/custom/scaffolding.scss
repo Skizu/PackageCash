@@ -37,7 +37,7 @@ body {
     }
 
     .data {
-      float:right;
+      float: right;
     }
   }
 
@@ -62,4 +62,10 @@ body {
   border-width: 0 0 1px;
   border-color: $theme-grey;
   border-radius: 0;
+}
+
+.help {
+  padding: 15px;
+  margin: 15px;
+  @extend .bg-info;
 }

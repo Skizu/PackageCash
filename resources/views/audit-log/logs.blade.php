@@ -31,6 +31,7 @@
             </div>
         </div>
     @empty
+        <div class="date">Today</div>
         <div class="entry">
             <div class="icon"></div>
             <div>There are no entries.</div>

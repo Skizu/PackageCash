@@ -1,0 +1,18 @@
+#tutorial {
+  button {
+    @extend .btn-success;
+
+    &:not([data-current="1"]) {
+      @extend .btn.disabled
+    }
+
+    &[data-current="1"] {
+      @extend .btn-warning;
+
+      & ~ button {
+        @extend .btn-info;
+      }
+    }
+  }
+
+}

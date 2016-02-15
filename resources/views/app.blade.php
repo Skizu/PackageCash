@@ -31,7 +31,7 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
+                    data-target="#navbar">
                 <span class="sr-only">Toggle Navigation</span>
                 <span class="icon-bar"></span>
 
@@ -41,13 +41,13 @@
             <a class="navbar-brand" href="{{ url('/') }}">PostalCache</a>
         </div>
 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav">
                 @if(Auth::guest())
                     <li><a href="{{ url('/') }}">Home</a></li>
                 @else
                     <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
-                    <li><a href="{{ route('envelope.index') }}">Envelopes</a></li>
+                    <li><a href="{{ route('envelope.index') }}" data-container="body" data-placement="bottom" data-title="Creating an Envelope" data-content="Envelopes are a single package of money, used to divide up money to assist in management." data-tutorial="{{ $TutorialState::CREATE_ENVELOPE }}">Envelopes</a></li>
                     <li><a href="{{ route('package.index') }}">Packages</a></li>
                 @endif
             </ul>
@@ -57,8 +57,8 @@
                     <li><a href="{{ url('/auth/login') }}">Login</a></li>
                     <li><a href="{{ url('/auth/register') }}">Register</a></li>
                 @else
-                    <li><a href="{{ route('package.create') }}">Create Package</a></li>
-                    <li><a href="{{ route('cheque.create') }}">Create Cheque</a></li>
+                    <li><a href="{{ route('package.create') }}" data-container="body" data-placement="bottom" data-title="Creating a Package" data-content="Packages are a way to group your envelopes." data-tutorial="{{ $TutorialState::CREATE_PACKAGE }}">Create Package</a></li>
+                    <li><a href="{{ route('cheque.create') }}" data-container="body" data-placement="bottom" data-title="Creating a Cheque" data-content="Cheques are the source of money for your account, for you to distribute." data-tutorial="{{ $TutorialState::CREATE_CHEQUE }}">Create Cheque</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                            aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
