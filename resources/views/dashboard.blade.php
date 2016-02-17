@@ -23,6 +23,7 @@
                     <div class="content button-group stages text-center">
                         @if($Tutorial->getState())
                             <div class="help"><span class="h5">Why does this do?</span>
+
                                 <p>Please click the current option to follow instructions.</p></div>
 
                             <div id="tutorial" class="btn-group" role="group">
@@ -39,8 +40,13 @@
                         @else
                             <p class="alert alert-info">Would you like to take the tutorial to help you find your way
                                 around the application?</p>
-                            <button class="btn btn-success">Yes</button>
-                            <button class="btn btn-warning">Skip</button>
+
+                            <form class="form-horizontal" role="form" method="POST"
+                                  action="{{ route('profile.tutorial.store', [Auth::id()]) }}">
+                                {{ csrf_field() }}
+                                <input type="submit" class="btn btn-success" name="tutorial_transition" value="Start" />
+                                <input type="submit" class="btn btn-warning" name="tutorial_transition" value="Skip" />
+                            </form>
                         @endif
                     </div>
                 </div>

@@ -8,6 +8,8 @@ class EventType
      * Event Types
      */
     const USER_CREATED = 101;
+    const USER_STARTED_TUTORIAL = 102;
+    const USER_COMPLETED_TUTORIAL = 103;
 
     const CHEQUE_CREATED = 201;
 

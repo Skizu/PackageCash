@@ -33,7 +33,7 @@ class StateMachine extends SM
                 State::COMPLETE,
             ],
             'transitions' => [
-                'start' => [
+                'Start' => [
                     'from' => [State::UNKNOWN],
                     'to' => State::CREATE_CHEQUE
                 ],
@@ -57,7 +57,7 @@ class StateMachine extends SM
                     'from' => [State::ASSIGN_PACKAGE],
                     'to' => State::COMPLETE
                 ],
-                'skip' => [
+                'Skip' => [
                     'from' => [State::UNKNOWN],
                     'to' => State::COMPLETE
                 ]

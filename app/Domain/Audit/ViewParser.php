@@ -9,6 +9,8 @@ class ViewParser
 {
     protected static $views = [
         EventType::USER_CREATED => 'audit.user-created',
+        EventType::USER_STARTED_TUTORIAL => 'audit.user-tutorial-started',
+        EventType::USER_COMPLETED_TUTORIAL => 'audit.user-tutorial-completed',
         EventType::CHEQUE_CREATED => 'audit.cheque-created',
         EventType::ENVELOPE_CREATED => 'audit.envelope-created',
         EventType::ENVELOPE_RENAMED => 'audit.envelope-renamed',
@@ -16,7 +18,7 @@ class ViewParser
         EventType::ENVELOPE_PACKAGE_UNASSIGNED => 'audit.envelope-package-unassigned',
         EventType::TRANSFER_CREATED => 'audit.transfer-created',
         EventType::TRANSACTION_CREATED => 'audit.transaction-created',
-        EventType::PACKAGE_CREATED => 'audit.package-created'
+        EventType::PACKAGE_CREATED => 'audit.package-created',
     ];
 
     protected $auditLog;

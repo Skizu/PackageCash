@@ -3,26 +3,26 @@
 namespace App\Events;
 
 use App\Domain\Audit\EventType;
-use App\Transfer;
+use App\User;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class TransferWasCreated extends AuditEvent
+class TutorialWasCompleted extends AuditEvent
 {
     use SerializesModels;
 
 
-    const EVENT_TYPE = EventType::TRANSFER_CREATED;
+    const EVENT_TYPE = EventType::USER_COMPLETED_TUTORIAL;
 
     /**
      * Create a new event instance.
      *
-     * @param Transfer $transfer
+     * @param User $user
      * @param array $data
      */
-    public function __construct(Transfer $transfer, $data = [])
+    public function __construct(User $user, $data = [])
     {
-        $this->setUpAudit($transfer, $data);
+        $this->setUpAudit($user, $data);
     }
 
     /**

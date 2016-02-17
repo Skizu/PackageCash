@@ -1,0 +1,1 @@
+<a href="{{ route('profile.show', [$UserID]) }}">{{ $users->find($UserID)->name }}</a> started the tutorial.

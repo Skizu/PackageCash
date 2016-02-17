@@ -20,6 +20,7 @@ Route::controllers([
 Route::group(['middleware' => 'auth'], function () {
     Route::resources([
         'profile' => 'ProfileController',
+        'profile.tutorial' => 'TutorialController',
         'envelope' => 'EnvelopeController',
         'envelope.transaction' => 'TransactionController',
         'envelope.transfer' => 'TransferController',

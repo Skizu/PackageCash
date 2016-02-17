@@ -34,6 +34,12 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\TransferWasCreated' => [
             'App\Listeners\AddToAudit',
         ],
+        'App\Events\TutorialWasStarted' => [
+            'App\Listeners\AddToAudit',
+        ],
+        'App\Events\TutorialWasCompleted' => [
+            'App\Listeners\AddToAudit',
+        ],
         'App\Events\TransactionWasCreated' => [
             'App\Listeners\AddToAudit',
         ],
