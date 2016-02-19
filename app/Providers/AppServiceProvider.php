@@ -17,8 +17,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        User::creating(function ($user) {
+        User::creating(function (User $user) {
             $user->locale = $user->locale ?: env('LOCALE');
+        });
+
+        User::saved(function (User $user) {
+            Cache::forget('users');
         });
     }
 
