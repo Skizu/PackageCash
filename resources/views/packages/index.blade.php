@@ -14,7 +14,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach(Auth::user()->packages as $package)
+                @forelse(Auth::user()->packages as $package)
                     <tr class="clickable" data-toggle="collapse" data-target="#package_{{ $package->id }}"
                         aria-expanded="false" aria-controls="package_{{ $package->id }}">
                         <td>{{ $package->name }}</td>
@@ -25,7 +25,11 @@
                             @include('packages.package')
                         </td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="2">You currently have no packages.</td>
+                    </tr>
+                @endforelse
                 </tbody>
             </table>
         </div>
