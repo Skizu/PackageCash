@@ -51,7 +51,7 @@ class ChequeController extends Controller
 
         $cheque->save();
 
-        Event::fire(new ChequeWasCreated($cheque, $cheque));
+        Event::fire(new ChequeWasCreated($cheque, $cheque, $request->user()));
 
         return redirect()->route('cheque.show', $cheque);
     }

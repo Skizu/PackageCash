@@ -3,6 +3,9 @@
 namespace App\Events;
 
 use App\Domain\Audit\EventType;
+use App\Domain\Tutorial\State;
+use App\Domain\Tutorial\StateMachine;
+use App\Http\Controllers\TutorialController;
 use App\User;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
@@ -19,10 +22,17 @@ class ChequeWasCreated extends AuditEvent
      *
      * @param Cheque $cheque
      * @param array $data
+     * @param User $user
      */
-    public function __construct(Cheque $cheque, $data = [])
+    public function __construct(Cheque $cheque, $data = [], User $user = null)
     {
         $this->setUpAudit($cheque, $data);
+
+        $tutorial = new StateMachine($user);
+        if($tutorial->can(State::CREATE_CHEQUE)) {
+            $tutorial->apply(State::CREATE_CHEQUE);
+        }
+        $tutorial->pushSave();
     }
 
     /**

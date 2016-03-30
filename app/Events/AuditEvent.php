@@ -23,7 +23,7 @@ abstract class AuditEvent
      * @param array $data
      * @param User $user
      */
-    public function setUpAudit(Auditable $object, $data = [], $user = null)
+    public function setUpAudit(Auditable $object, $data = [], User $user = null)
     {
         $this->setUser($user?:Auth::user());
         $this->setObject($object);

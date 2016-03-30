@@ -27,9 +27,7 @@ class TutorialController extends Controller
     {
         $tutorial = new StateMachine($user);
         $tutorial->apply($request->get('tutorial_transition'));
-
-        $user->tutorial_state = $tutorial->getState();
-        $user->save();
+        $tutorial->pushSave();
 
         $event = ($user->tutorial_state == State::COMPLETE) ? TutorialWasCompleted::class : TutorialWasStarted::class;
         Event::fire(new $event($user, $user->toArray()));
