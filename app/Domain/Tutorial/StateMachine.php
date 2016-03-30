@@ -13,6 +13,11 @@ class StateMachine extends SM
         parent::__construct($user, self::config());
     }
 
+    public function pushSave()
+    {
+        $this->object->save();
+    }
+
     /**
      * The state machine config.
      *
