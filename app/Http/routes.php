@@ -31,5 +31,5 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::group(['middleware' => 'guest'], function () {
-    Route::controller('/', 'GuestController');
+    Route::controller('/', 'DashboardController');
 });
