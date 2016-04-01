@@ -28,7 +28,7 @@ $('.envelopes')
         var $nameCtrl = $that.closest('.envelope').find('[name="name"]');
         var $name = $nameCtrl.val();
 
-        $.post('/envelope/', {
+        $.post('/envelope', {
             name: $name
         }, function (data) {
             $nameCtrl.val('');
