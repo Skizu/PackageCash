@@ -3,6 +3,8 @@
 namespace App\Events;
 
 use App\Domain\Audit\EventType;
+use App\Domain\Tutorial\State;
+use App\Domain\Tutorial\StateMachine;
 use App\User;
 use Illuminate\Queue\SerializesModels;
 use App\Envelope;
@@ -19,9 +21,15 @@ class EnvelopeWasCreated extends AuditEvent
      * @param Envelope $envelope
      * @param array $data
      */
-    public function __construct(Envelope $envelope, $data = [])
+    public function __construct(User $user, Envelope $envelope, $data = [])
     {
         $this->setUpAudit($envelope, $data);
+
+        $tutorial = new StateMachine($user);
+        if ($tutorial->can(State::CREATE_ENVELOPE)) {
+            $tutorial->apply(State::CREATE_ENVELOPE);
+            $tutorial->pushSave();
+        }
     }
 
     /**

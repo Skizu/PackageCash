@@ -62,7 +62,7 @@ class EnvelopeController extends Controller
 
         $envelope->save();
 
-        Event::fire(new EnvelopeWasCreated($envelope, $envelope));
+        Event::fire(new EnvelopeWasCreated($request->user(), $envelope, $envelope));
 
         return $envelope;
     }
