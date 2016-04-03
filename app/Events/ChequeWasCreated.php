@@ -24,12 +24,12 @@ class ChequeWasCreated extends AuditEvent
      * @param array $data
      * @param User $user
      */
-    public function __construct(Cheque $cheque, $data = [], User $user = null)
+    public function __construct(User $user, Cheque $cheque, $data = [])
     {
         $this->setUpAudit($cheque, $data);
 
         $tutorial = new StateMachine($user);
-        if($tutorial->can(State::CREATE_CHEQUE)) {
+        if ($tutorial->can(State::CREATE_CHEQUE)) {
             $tutorial->apply(State::CREATE_CHEQUE);
         }
         $tutorial->pushSave();

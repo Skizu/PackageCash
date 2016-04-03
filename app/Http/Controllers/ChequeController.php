@@ -51,7 +51,7 @@ class ChequeController extends Controller
 
         $cheque->save();
 
-        Event::fire(new ChequeWasCreated($cheque, $cheque, $request->user()));
+        Event::fire(new ChequeWasCreated($request->user(), $cheque, $cheque));
 
         return redirect()->route('cheque.show', $cheque);
     }
@@ -59,7 +59,7 @@ class ChequeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  Cheque  $cheque
+     * @param  Cheque $cheque
      * @return Response
      */
     public function show(Cheque $cheque)
@@ -116,7 +116,7 @@ class ChequeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function destroy($id)
