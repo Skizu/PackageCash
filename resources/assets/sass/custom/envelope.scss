@@ -18,7 +18,7 @@ $colours: (
   @include transition(opacity 3s ease);
 
   &.template {
-    @include opacity(0);
+    display: none;
   }
 
   &:not(.new):hover {

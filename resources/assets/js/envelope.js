@@ -45,7 +45,7 @@ $('.envelopes')
 
             $new.insertBefore( $('.envelope.new').parent() );
 
-            $envelope.toggleClass('template');
+            $envelope.removeClass('template');
         })
     });
 $('[data-filter]').on('click', '[data-colour]', function () {
