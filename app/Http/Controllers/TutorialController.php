@@ -25,12 +25,12 @@ class TutorialController extends Controller
      */
     public function store(Request $request, User $user)
     {
-        $tutorial = new StateMachine($user);
-        $tutorial->apply($request->get('tutorial_transition'));
-        $tutorial->pushSave();
-
-        $event = ($user->tutorial_state == State::COMPLETE) ? TutorialWasCompleted::class : TutorialWasStarted::class;
-        Event::fire(new $event($user, $user->toArray()));
+        $tutorial_transaction = $request->get('tutorial_transition');
+        if ($tutorial_transaction == 'Start') {
+            Event::fire(new TutorialWasStarted($user, $user->toArray()));
+        } elseif ($tutorial_transaction == 'Skip') {
+            Event::fire(new TutorialWasCompleted($user, $user->toArray()));
+        }
 
         return redirect()->back();
     }

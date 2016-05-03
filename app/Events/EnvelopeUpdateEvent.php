@@ -7,7 +7,7 @@ use App\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class EnvelopeUpdateEvent extends AuditEvent
+abstract class EnvelopeUpdateEvent extends AuditEvent
 {
     use SerializesModels;
 
@@ -22,7 +22,7 @@ class EnvelopeUpdateEvent extends AuditEvent
         $this->setUpAudit($envelope, $data);
 
         if ($envelope->package) {
-            $this->addAuditable($envelope->package->auditable_id);
+            $this->addAuditable($envelope->package->getAuditableId());
         }
     }
 

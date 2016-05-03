@@ -3,36 +3,34 @@
 namespace App\Events;
 
 use App\Domain\Audit\EventType;
-use App\Domain\Tutorial\State;
-use App\Domain\Tutorial\StateMachine;
-use App\Http\Controllers\TutorialController;
+use App\Domain\Tutorial\CanTutorial;
 use App\User;
+use App\Cheque;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use App\Cheque;
 
-class ChequeWasCreated extends AuditEvent
+class ChequeWasCreated extends AuditEvent implements CanTutorial
 {
     use SerializesModels;
-
-    const EVENT_TYPE = EventType::CHEQUE_CREATED;
 
     /**
      * Create a new audit event instance.
      *
+     * @param User $user
      * @param Cheque $cheque
      * @param array $data
-     * @param User $user
      */
     public function __construct(User $user, Cheque $cheque, $data = [])
     {
         $this->setUpAudit($cheque, $data);
+    }
 
-        $tutorial = new StateMachine($user);
-        if ($tutorial->can(State::CREATE_CHEQUE)) {
-            $tutorial->apply(State::CREATE_CHEQUE);
-        }
-        $tutorial->pushSave();
+    /**
+     * @return int
+     */
+    public function getEventType()
+    {
+        return EventType::CHEQUE_CREATED;
     }
 
     /**

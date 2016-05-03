@@ -11,5 +11,13 @@ class EnvelopeWasRenamed extends EnvelopeUpdateEvent
 {
     use SerializesModels;
 
-    const EVENT_TYPE = EventType::ENVELOPE_RENAMED;
+    /**
+     * Event type to be used
+     *
+     * @return int
+     */
+    public function getEventType()
+    {
+        return EventType::ENVELOPE_RENAMED;
+    }
 }

@@ -4,13 +4,22 @@ namespace App\Domain\Audit;
 
 
 use App\AuditLog;
-use Auth;
 
 trait Auditable
 {
+    public static function auditableColumn()
+    {
+        return 'auditable_id';
+    }
+
+    public function getAuditableId()
+    {
+        return $this->{static::auditableColumn()};
+    }
+
     public function getAuditLog($limit = 50)
     {
-        return AuditLog::whereContains('AuditableID', $this->{static::AUDITABLE_COLUMN}, $limit)
+        return AuditLog::whereContains('AuditableID', $this->getAuditableId(), $limit)
             ->orderBy('id', 'desc')->get();
     }
 }

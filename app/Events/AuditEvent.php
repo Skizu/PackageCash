@@ -7,10 +7,8 @@ use App\Contracts\Auditable;
 use Auth;
 
 
-abstract class AuditEvent
+abstract class AuditEvent extends Event
 {
-    const EVENT_TYPE = null;
-
     protected $_data = [];
     protected $_user;
     protected $_object;
@@ -25,20 +23,10 @@ abstract class AuditEvent
      */
     public function setUpAudit(Auditable $object, $data = [], User $user = null)
     {
-        $this->setUser($user?:Auth::user());
+        $this->setUser($user ?: Auth::user());
         $this->setObject($object);
+        $this->addAuditable($this->getUser()->getAuditableId(), $object->getAuditableId());
         $this->_data = $data;
-    }
-
-    /**
-     * Set audit user
-     *
-     * @param User $user
-     */
-    private function setUser(User $user)
-    {
-        $this->_user = $user;
-        $this->addAuditable($user->auditable_id);
     }
 
     /**
@@ -49,7 +37,6 @@ abstract class AuditEvent
     private function setObject(Auditable $object)
     {
         $this->_object = $object;
-        $this->addAuditable($object->auditable_id);
     }
 
     /**
@@ -57,7 +44,7 @@ abstract class AuditEvent
      *
      * @param mixed $_ [optional]
      */
-    public function addAuditable()
+    public function addAuditable($_ = null)
     {
         $this->_auditable = array_filter(array_flatten(array_merge($this->_auditable, func_get_args())));
     }
@@ -82,7 +69,7 @@ abstract class AuditEvent
     {
         return [
             'AuditableID' => $this->_auditable,
-            'EventType' => static::EVENT_TYPE,
+            'EventType' => $this->getEventType(),
             'ObjectID' => $this->_object->id,
             'UserID' => $this->_user->id,
             'Data' => $this->_data,

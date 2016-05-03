@@ -3,17 +3,16 @@
 namespace App\Events;
 
 use App\Domain\Audit\EventType;
+use App\Domain\Tutorial\CanTutorial;
 use App\Domain\Tutorial\State;
 use App\Domain\Tutorial\StateMachine;
 use App\User;
 use Illuminate\Queue\SerializesModels;
 use App\Envelope;
 
-class EnvelopeWasCreated extends AuditEvent
+class EnvelopeWasCreated extends AuditEvent implements CanTutorial
 {
     use SerializesModels;
-
-    const EVENT_TYPE = EventType::ENVELOPE_CREATED;
 
     /**
      * Create a new audit event instance.
@@ -24,12 +23,16 @@ class EnvelopeWasCreated extends AuditEvent
     public function __construct(User $user, Envelope $envelope, $data = [])
     {
         $this->setUpAudit($envelope, $data);
+    }
 
-        $tutorial = new StateMachine($user);
-        if ($tutorial->can(State::CREATE_ENVELOPE)) {
-            $tutorial->apply(State::CREATE_ENVELOPE);
-            $tutorial->pushSave();
-        }
+    /**
+     * Event type to be used
+     *
+     * @return int
+     */
+    public function getEventType()
+    {
+        return EventType::ENVELOPE_CREATED;
     }
 
     /**

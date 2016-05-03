@@ -11,9 +11,6 @@ class TransactionWasCreated extends AuditEvent
 {
     use SerializesModels;
 
-
-    const EVENT_TYPE = EventType::TRANSACTION_CREATED;
-
     /**
      * Create a new audit event instance.
      *
@@ -23,6 +20,16 @@ class TransactionWasCreated extends AuditEvent
     public function __construct(Transaction $transaction, $data = [])
     {
         $this->setUpAudit($transaction, $data);
+    }
+
+    /**
+     * Event type to be used
+     *
+     * @return int
+     */
+    public function getEventType()
+    {
+        return EventType::TRANSACTION_CREATED;
     }
 
     /**

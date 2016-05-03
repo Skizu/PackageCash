@@ -3,16 +3,14 @@
 namespace App\Events;
 
 use App\Domain\Audit\EventType;
+use App\Domain\Tutorial\CanTutorial;
 use App\User;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class TutorialWasCompleted extends AuditEvent
+class TutorialWasCompleted extends AuditEvent implements CanTutorial
 {
     use SerializesModels;
-
-
-    const EVENT_TYPE = EventType::USER_COMPLETED_TUTORIAL;
 
     /**
      * Create a new event instance.
@@ -23,6 +21,16 @@ class TutorialWasCompleted extends AuditEvent
     public function __construct(User $user, $data = [])
     {
         $this->setUpAudit($user, $data);
+    }
+
+    /**
+     * Event type to be used
+     *
+     * @return int
+     */
+    public function getEventType()
+    {
+        return EventType::USER_COMPLETED_TUTORIAL;
     }
 
     /**

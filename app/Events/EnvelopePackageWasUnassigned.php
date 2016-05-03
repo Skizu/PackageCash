@@ -12,8 +12,6 @@ class EnvelopePackageWasUnassigned extends EnvelopeUpdateEvent
 {
     use SerializesModels;
 
-    const EVENT_TYPE = EventType::ENVELOPE_PACKAGE_UNASSIGNED;
-
     /**
      * Create a new audit event instance.
      *
@@ -27,6 +25,16 @@ class EnvelopePackageWasUnassigned extends EnvelopeUpdateEvent
         $package = Package::find($envelope->getOriginal('package_id'));
 
         $this->addData('OriginalPackage', $package);
-        $this->addAuditable($package->auditable_id);
+        $this->addAuditable($package->getAuditableId());
+    }
+
+    /**
+     * Event type to be used
+     *
+     * @return int
+     */
+    public function getEventType()
+    {
+        return EventType::ENVELOPE_PACKAGE_UNASSIGNED;
     }
 }
