@@ -9,7 +9,14 @@
     </div>
     <div class="col-xs-12 col-md-4">
         <h5 class="header">Envelopes</h5>
-        {{ dump($package->envelopes) }}
+
+        <div class="envelopes text-center">
+            @forelse($package->envelopes as $envelope)
+                @include('envelopes.envelope')
+            @empty
+                <em>No Envelopes</em>
+            @endforelse
+        </div>
     </div>
     <div class="col-xs-12 col-md-5">
         <h5 class="header">Transaction History</h5>
