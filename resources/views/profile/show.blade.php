@@ -24,6 +24,15 @@
                     <div class="col-md-6 super-action">
                         <span>Version</span><span class="info">{{ env('VERSION') }}</span>
                     </div>
+                    <a href="#" class="col-md-12 super-action">
+                        <span>Update</span><span class="info">Password</span>
+                    </a>
+                    <a href="#" class="col-md-6 super-action">
+                        <span>Restart</span><span class="info">Tutorial</span>
+                    </a>
+                    <a href="#" class="col-md-6 action">
+                        <span>Logout</span><span class="info">Of Account</span>
+                    </a>
                 </div>
             </div>
         </div>

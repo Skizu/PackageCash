@@ -123,7 +123,7 @@
                         <tr>
                             <td class="text-left"><a
                                         href="{{ route('package.show', [$package->id]) }}">{{ $package->name }}</a></td>
-                            <td>
+                            <td class="text-right">
                                 <a href="{{ route('package.show', [$package->id]) }}">{{ $package->formatMoney('amount') }}</a>
                             </td>
                         </tr>
