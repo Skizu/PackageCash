@@ -54,6 +54,7 @@
 						</div>
 					</form>
 				</div>
+				<div class="panel-footer small text-right">Version {{ env('VERSION')}}</div>
 			</div>
 		</div>
 	</div>
