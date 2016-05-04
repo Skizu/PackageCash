@@ -13,7 +13,8 @@ $('.envelopes')
 
         $.post('/envelope/' + $envelope.data('id'), {
             _method: "put",
-            colour: $that.data('colour')
+            colour: $that.data('colour'),
+            change: 'colourOnly'
         }, function (data) {
             $envelope.data('colour', $that.data('colour'));
             $envelope.attr('data-colour', $that.data('colour'));

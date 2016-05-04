@@ -103,7 +103,11 @@ class EnvelopeController extends Controller
         $envelope->colour = $request->input('colour');
         $envelope->name = $request->input('name', $envelope->name);
         $package = $request->input('package');
-        $envelope->package()->associate(empty($package) ? null : $package);
+        $change = $request->input('change', false);
+
+        if ($change != 'colourOnly') {
+            $envelope->package()->associate(empty($package) ? null : $package);
+        }
 
         if ($envelope->isDirty('name')) {
             $EnvelopeWasRenamed = new EnvelopeWasRenamed($envelope, $envelope->toArray());
