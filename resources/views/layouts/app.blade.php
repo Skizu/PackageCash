@@ -72,8 +72,8 @@
 
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())
-                    <li><a href="{{ url('/auth/login') }}">Login</a></li>
-                    <li><a href="{{ url('/auth/register') }}">Register</a></li>
+                    <li><a href="{{ url('/login') }}">Login</a></li>
+                    <li><a href="{{ url('/register') }}">Register</a></li>
                 @else
                     <li><a href="{{ route('package.create') }}" data-container="body" data-placement="bottom" data-title="Creating a Package" data-content="Packages are a way to group your envelopes." data-tutorial="{{ $TutorialState::CREATE_PACKAGE }}">Create Package</a></li>
                     <li><a href="{{ route('cheque.create') }}" data-container="body" data-placement="bottom" data-title="Creating a Cheque" data-content="Cheques are the source of money for your account, for you to distribute." data-tutorial="{{ $TutorialState::CREATE_CHEQUE }}">Create Cheque</a></li>
@@ -82,7 +82,7 @@
                            aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ route('profile.index') }}">Profile</a></li>
-                            <li><a href="{{ url('/auth/logout') }}">Logout</a></li>
+                            <li><a href="{{ url('/logout') }}">Logout</a></li>
                         </ul>
                     </li>
                 @endif

@@ -1,4 +1,4 @@
-@extends('app')
+@extends('layouts.app')
 @section('content')
     <div id="envelope" class="page container {{$envelope->colour}}">
         <div class="header">

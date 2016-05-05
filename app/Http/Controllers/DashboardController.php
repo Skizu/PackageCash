@@ -35,7 +35,7 @@ class DashboardController extends Controller
      *
      * @return View
      */
-    public function getIndex()
+    public function index()
     {
         $envelopes = $this->user->envelopes;
         $UnsortedCheques = $this->user->cheques()->unsorted();

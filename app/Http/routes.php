@@ -11,11 +11,7 @@
 |
 */
 
-Route::controllers([
-    'auth' => 'Auth\AuthController',
-    'password' => 'Auth\PasswordController',
-    'dashboard' => 'DashboardController',
-]);
+Route::auth();
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resources([
@@ -28,8 +24,7 @@ Route::group(['middleware' => 'auth'], function () {
         'cheque' => 'ChequeController',
         'transfer' => 'TransferController',
     ]);
-});
 
-Route::group(['middleware' => 'guest'], function () {
-    Route::controller('/', 'DashboardController');
+    Route::get('/', 'DashboardController@index');
+    Route::get('/dashboard', 'DashboardController@index');
 });

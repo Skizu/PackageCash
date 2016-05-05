@@ -19,6 +19,11 @@ class PasswordController extends Controller
     */
 
     use ResetsPasswords;
+    
+    /**
+     * @var string
+     */
+    protected $redirectPath = 'dashboard';
 
     /**
      * Create a new password controller instance.
