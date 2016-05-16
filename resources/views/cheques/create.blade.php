@@ -17,6 +17,10 @@
                             </div>
                         @endif
 
+                        <div class="help text-center"><span class="h5">What does this do?</span>
+
+                            <p>Creates an incoming source of money which you can distribute.</p></div>
+
                         <form class="form-horizontal" role="form" method="POST" action="{{ route('cheque.store') }}">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 

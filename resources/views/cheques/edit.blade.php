@@ -17,6 +17,12 @@
                             </div>
                         @endif
 
+
+                            <div class="help text-center"><span class="h5">What does this do?</span>
+
+                                <p>Distributing the content of your cheques to one or multiple envelopes to help manage
+                                    your money.</p></div>
+
                         <form class="form-horizontal" role="form" method="POST"
                               action="{{ route('cheque.update', [$cheque->id]) }}">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">

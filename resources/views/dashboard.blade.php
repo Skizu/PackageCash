@@ -22,7 +22,7 @@
                     </div>
                     <div class="content button-group stages text-center">
                         @if($Tutorial->getState())
-                            <div class="help"><span class="h5">Why does this do?</span>
+                            <div class="help"><span class="h5">What does this do?</span>
 
                                 <p>Please click the current option to follow instructions.</p></div>
 
@@ -44,8 +44,8 @@
                             <form class="form-horizontal" role="form" method="POST"
                                   action="{{ route('profile.tutorial.store', [Auth::id()]) }}">
                                 {{ csrf_field() }}
-                                <input type="submit" class="btn btn-success" name="tutorial_transition" value="Start" />
-                                <input type="submit" class="btn btn-warning" name="tutorial_transition" value="Skip" />
+                                <input type="submit" class="btn btn-success" name="tutorial_transition" value="Start"/>
+                                <input type="submit" class="btn btn-warning" name="tutorial_transition" value="Skip"/>
                             </form>
                         @endif
                     </div>
@@ -53,8 +53,8 @@
             @endif
             <div class="col-xs-12 col-md-push-6 col-md-6">
                 @if($UnsortedCheques->isEmpty() == false)
-                    <div class="header" data-container="body" data-placement="top" data-title="Creating a Package"
-                         data-content="Packages are a way to group your envelopes."
+                    <div class="header" data-container="body" data-placement="top" data-title="Distributing a Cheque"
+                         data-content="You can distribute the content of your cheques to one or multiple envelopes to manage your income."
                          data-tutorial="{{ $TutorialState::DISTRIBUTE_CHEQUE }}">
                         <h4>Unsorted Cheques</h4>
                     </div>
@@ -79,7 +79,7 @@
                 @if($UnsortedEnvelopes->isEmpty() == false)
                     <div class="header" data-container="body" data-placement="top"
                          data-title="Assigning Envelopes to a Package"
-                         data-content="Not only does this visually assist in managing money, but you are also able to use some more advanced features on packages."
+                         data-content="Not only does this visually assist in managing money, but you are also able to use some more advanced features on Packages."
                          data-tutorial="{{ $TutorialState::ASSIGN_PACKAGE }}">
                         <h4>Unsorted Envelopes</h4>
                     </div>

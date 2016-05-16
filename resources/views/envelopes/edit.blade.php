@@ -17,6 +17,11 @@
                             </div>
                         @endif
 
+                        <div class="help text-center"><span class="h5">What does this do?</span>
+
+                            <p>Assigning a Package not only does this visually assist in managing money, but you are
+                                also able to use some more advanced features on Packages.</p></div>
+
                         <form class="form-horizontal" role="form" method="POST"
                               action="{{ route('envelope.update', [$envelope->id]) }}">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
