@@ -19,7 +19,7 @@ trait Auditable
 
     public function getAuditLog($limit = 50)
     {
-        return AuditLog::whereContains('AuditableID', $this->getAuditableId(), $limit)
+        return AuditLog::whereContains('AuditableID', $this->getAuditableId())->take($limit)
             ->orderBy('id', 'desc')->get();
     }
 }

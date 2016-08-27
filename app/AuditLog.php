@@ -4,6 +4,7 @@ namespace App;
 
 use App\Domain\Audit\ViewParser;
 use App\Domain\ObjectHasStateMachine;
+use App\Scopes\AuditableRelationScope;
 use Illuminate\Database\Eloquent\Model;
 
 class AuditLog extends Model
@@ -31,18 +32,34 @@ class AuditLog extends Model
         'data' => 'object',
     ];
 
-    public static function whereAuditableID($value, $limit)
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
     {
-        return static::whereContains('AuditableID', $value, $limit);
+        parent::boot();
+
+        static::addGlobalScope(new AuditableRelationScope());
     }
 
-    public static function whereContains($key, $value, $limit)
+
+    /**
+     * Scope a query to filter by int in json int array.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param $key
+     * @param $value
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeWhereContains($query, $key, $value)
     {
-        // TODO: restrict users
-        return static::whereRaw('? <@ json_array_int(data -> ?)', ['{' . $value . '}', $key])->take($limit);
+        return $query->whereRaw('? <@ json_array_int(data -> ?)', ['{' . $value . '}', $key]);
     }
 
-    public function view() {
+    public function view()
+    {
         return new ViewParser($this);
     }
 }
